@@ -6,46 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		E2A8EDE82EC84F9700AE2408 /* StatusBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDE62EC84F9700AE2408 /* StatusBadge.swift */; };
-		E2A8EDE92EC84F9700AE2408 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDD32EC84F9700AE2408 /* AppMain.swift */; };
-		E2A8EDEA2EC84F9700AE2408 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDE22EC84F9700AE2408 /* HomeView.swift */; };
-		E2A8EDEB2EC84F9700AE2408 /* WhisperCandidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDD82EC84F9700AE2408 /* WhisperCandidate.swift */; };
-		E2A8EDEC2EC84F9700AE2408 /* MomentText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDE32EC84F9700AE2408 /* MomentText.swift */; };
-		E2A8EDED2EC84F9700AE2408 /* WhisperEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDDE2EC84F9700AE2408 /* WhisperEngine.swift */; };
-		E2A8EDEE2EC84F9700AE2408 /* MotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDDD2EC84F9700AE2408 /* MotionService.swift */; };
-		E2A8EDEF2EC84F9700AE2408 /* MomentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDD72EC84F9700AE2408 /* MomentState.swift */; };
-		E2A8EDF02EC84F9700AE2408 /* Geogate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDD62EC84F9700AE2408 /* Geogate.swift */; };
-		E2A8EDF12EC84F9700AE2408 /* MockContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDDC2EC84F9700AE2408 /* MockContentService.swift */; };
-		E2A8EDF22EC84F9700AE2408 /* AppEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDD52EC84F9700AE2408 /* AppEvent.swift */; };
-		E2A8EDF32EC84F9700AE2408 /* ContextServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDDA2EC84F9700AE2408 /* ContextServiceProtocol.swift */; };
-		E2A8EDF42EC84F9700AE2408 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDDB2EC84F9700AE2408 /* LocationService.swift */; };
-		E2A8EDF52EC84F9700AE2408 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDE12EC84F9700AE2408 /* DebugView.swift */; };
-		E2A8EDF62EC84F9700AE2408 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDE02EC84F9700AE2408 /* ContentView.swift */; };
-		E2A8EDF72EC84F9700AE2408 /* OrbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDE42EC84F9700AE2408 /* OrbView.swift */; };
-		E2A8EDF82EC84F9700AE2408 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDE52EC84F9700AE2408 /* PrimaryButton.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		E2A8EDD32EC84F9700AE2408 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
-		E2A8EDD52EC84F9700AE2408 /* AppEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEvent.swift; sourceTree = "<group>"; };
-		E2A8EDD62EC84F9700AE2408 /* Geogate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geogate.swift; sourceTree = "<group>"; };
-		E2A8EDD72EC84F9700AE2408 /* MomentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentState.swift; sourceTree = "<group>"; };
-		E2A8EDD82EC84F9700AE2408 /* WhisperCandidate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperCandidate.swift; sourceTree = "<group>"; };
-		E2A8EDDA2EC84F9700AE2408 /* ContextServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextServiceProtocol.swift; sourceTree = "<group>"; };
-		E2A8EDDB2EC84F9700AE2408 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
-		E2A8EDDC2EC84F9700AE2408 /* MockContentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockContentService.swift; sourceTree = "<group>"; };
-		E2A8EDDD2EC84F9700AE2408 /* MotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionService.swift; sourceTree = "<group>"; };
-		E2A8EDDE2EC84F9700AE2408 /* WhisperEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperEngine.swift; sourceTree = "<group>"; };
-		E2A8EDE02EC84F9700AE2408 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		E2A8EDE12EC84F9700AE2408 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
-		E2A8EDE22EC84F9700AE2408 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		E2A8EDE32EC84F9700AE2408 /* MomentText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentText.swift; sourceTree = "<group>"; };
-		E2A8EDE42EC84F9700AE2408 /* OrbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbView.swift; sourceTree = "<group>"; };
-		E2A8EDE52EC84F9700AE2408 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
-		E2A8EDE62EC84F9700AE2408 /* StatusBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBadge.swift; sourceTree = "<group>"; };
 		E2AF915F2EC7D41D00E34C99 /* Contextual.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contextual.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2AF918F2EC7D93C00E34C99 /* Contextual-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Contextual-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,63 +21,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E2A8EDD42EC84F9700AE2408 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				E2A8EDD32EC84F9700AE2408 /* AppMain.swift */,
-			);
-			name = App;
-			path = Sources/App;
-			sourceTree = "<group>";
-		};
-		E2A8EDD92EC84F9700AE2408 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E2A8EDD52EC84F9700AE2408 /* AppEvent.swift */,
-				E2A8EDD62EC84F9700AE2408 /* Geogate.swift */,
-				E2A8EDD72EC84F9700AE2408 /* MomentState.swift */,
-				E2A8EDD82EC84F9700AE2408 /* WhisperCandidate.swift */,
-			);
-			name = Models;
-			path = Sources/Models;
-			sourceTree = "<group>";
-		};
-		E2A8EDDF2EC84F9700AE2408 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				E2A8EDDA2EC84F9700AE2408 /* ContextServiceProtocol.swift */,
-				E2A8EDDB2EC84F9700AE2408 /* LocationService.swift */,
-				E2A8EDDC2EC84F9700AE2408 /* MockContentService.swift */,
-				E2A8EDDD2EC84F9700AE2408 /* MotionService.swift */,
-				E2A8EDDE2EC84F9700AE2408 /* WhisperEngine.swift */,
-			);
-			name = Services;
-			path = Sources/Services;
-			sourceTree = "<group>";
-		};
-		E2A8EDE72EC84F9700AE2408 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				E2A8EDE02EC84F9700AE2408 /* ContentView.swift */,
-				E2A8EDE12EC84F9700AE2408 /* DebugView.swift */,
-				E2A8EDE22EC84F9700AE2408 /* HomeView.swift */,
-				E2A8EDE32EC84F9700AE2408 /* MomentText.swift */,
-				E2A8EDE42EC84F9700AE2408 /* OrbView.swift */,
-				E2A8EDE52EC84F9700AE2408 /* PrimaryButton.swift */,
-				E2A8EDE62EC84F9700AE2408 /* StatusBadge.swift */,
-			);
-			name = Views;
-			path = Sources/Views;
-			sourceTree = "<group>";
-		};
 		E2AF91562EC7D41D00E34C99 = {
 			isa = PBXGroup;
 			children = (
-				E2A8EDD42EC84F9700AE2408 /* App */,
-				E2A8EDD92EC84F9700AE2408 /* Models */,
-				E2A8EDDF2EC84F9700AE2408 /* Services */,
-				E2A8EDE72EC84F9700AE2408 /* Views */,
-				E2AF918F2EC7D93C00E34C99 /* Contextual-Info.plist */,
 				E2AF91602EC7D41D00E34C99 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -199,23 +107,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2A8EDE82EC84F9700AE2408 /* StatusBadge.swift in Sources */,
-				E2A8EDE92EC84F9700AE2408 /* AppMain.swift in Sources */,
-				E2A8EDEA2EC84F9700AE2408 /* HomeView.swift in Sources */,
-				E2A8EDEB2EC84F9700AE2408 /* WhisperCandidate.swift in Sources */,
-				E2A8EDEC2EC84F9700AE2408 /* MomentText.swift in Sources */,
-				E2A8EDED2EC84F9700AE2408 /* WhisperEngine.swift in Sources */,
-				E2A8EDEE2EC84F9700AE2408 /* MotionService.swift in Sources */,
-				E2A8EDEF2EC84F9700AE2408 /* MomentState.swift in Sources */,
-				E2A8EDF02EC84F9700AE2408 /* Geogate.swift in Sources */,
-				E2A8EDF12EC84F9700AE2408 /* MockContentService.swift in Sources */,
-				E2A8EDF22EC84F9700AE2408 /* AppEvent.swift in Sources */,
-				E2A8EDF32EC84F9700AE2408 /* ContextServiceProtocol.swift in Sources */,
-				E2A8EDF42EC84F9700AE2408 /* LocationService.swift in Sources */,
-				E2A8EDF52EC84F9700AE2408 /* DebugView.swift in Sources */,
-				E2A8EDF62EC84F9700AE2408 /* ContentView.swift in Sources */,
-				E2A8EDF72EC84F9700AE2408 /* OrbView.swift in Sources */,
-				E2A8EDF82EC84F9700AE2408 /* PrimaryButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
