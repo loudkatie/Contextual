@@ -1,0 +1,18 @@
+# Xcode
+DerivedData/
+xcuserdata/
+*.xcworkspace
+*.xcuserstate
+
+# SwiftPM
+.build/
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# Secrets
+Secrets.xcconfig
+

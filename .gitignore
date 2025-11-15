@@ -4,15 +4,29 @@ xcuserdata/
 *.xcworkspace
 *.xcuserstate
 
-# SwiftPM
+# Swift Package Manager
 .build/
+Packages/
 
 # Logs
 *.log
 
-# macOS
+# macOS system files
 .DS_Store
+.AppleDouble
+.LSOverride
 
-# Secrets
-Secrets.xcconfig
+# iOS build artifacts
+build/
+*.ipa
+*.xcarchive
 
+# Temporary or generated
+*.swp
+*.map
+*.dSYM
+*.dSYM.zip
+
+# Codex agent scratch space
+.codex/
+.DS_Store

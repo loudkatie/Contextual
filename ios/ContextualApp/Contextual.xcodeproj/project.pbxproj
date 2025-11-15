@@ -7,51 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E2AF91822EC7D6A200E34C99 /* placeholder.txt in Resources */ = {isa = PBXBuildFile; fileRef = E2AF91702EC7D6A200E34C99 /* placeholder.txt */; };
-		E2AF91832EC7D6A200E34C99 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E2AF916D2EC7D6A200E34C99 /* README.md */; };
-		E2AF91842EC7D6A200E34C99 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = E2AF916E2EC7D6A200E34C99 /* Contents.json */; };
-		E2AF91852EC7D6A200E34C99 /* WhisperCandidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF91772EC7D6A200E34C99 /* WhisperCandidate.swift */; };
-		E2AF91862EC7D6A200E34C99 /* MotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF917A2EC7D6A200E34C99 /* MotionService.swift */; };
-		E2AF91872EC7D6A200E34C99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF917D2EC7D6A200E34C99 /* ContentView.swift */; };
-		E2AF91882EC7D6A200E34C99 /* AppEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF91752EC7D6A200E34C99 /* AppEvent.swift */; };
-		E2AF91892EC7D6A200E34C99 /* Geogate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF91762EC7D6A200E34C99 /* Geogate.swift */; };
-		E2AF918A2EC7D6A200E34C99 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF91792EC7D6A200E34C99 /* LocationService.swift */; };
-		E2AF918B2EC7D6A200E34C99 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF91732EC7D6A200E34C99 /* AppMain.swift */; };
-		E2AF918C2EC7D6A200E34C99 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF917E2EC7D6A200E34C99 /* DebugView.swift */; };
-		E2AF918D2EC7D6A200E34C99 /* StatusBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF917F2EC7D6A200E34C99 /* StatusBadge.swift */; };
-		E2AF918E2EC7D6A200E34C99 /* WhisperEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF917B2EC7D6A200E34C99 /* WhisperEngine.swift */; };
-		E2AF91912EC7DD3400E34C99 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF91902EC7DD3100E34C99 /* HomeView.swift */; };
-		E2AF91932EC7DD4600E34C99 /* OrbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF91922EC7DD4300E34C99 /* OrbView.swift */; };
-		E2AF91952EC7DD5A00E34C99 /* MomentText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF91942EC7DD5500E34C99 /* MomentText.swift */; };
-		E2AF91972EC7DD6E00E34C99 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF91962EC7DD6700E34C99 /* PrimaryButton.swift */; };
-		E2AF91992EC7DD7800E34C99 /* MomentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF91982EC7DD7500E34C99 /* MomentState.swift */; };
-		E2AF919B2EC7DDF300E34C99 /* ContextServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF919A2EC7DDED00E34C99 /* ContextServiceProtocol.swift */; };
-		E2AF919D2EC7DE0800E34C99 /* MockContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF919C2EC7DE0300E34C99 /* MockContentService.swift */; };
+		E2A8EDE82EC84F9700AE2408 /* StatusBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDE62EC84F9700AE2408 /* StatusBadge.swift */; };
+		E2A8EDE92EC84F9700AE2408 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDD32EC84F9700AE2408 /* AppMain.swift */; };
+		E2A8EDEA2EC84F9700AE2408 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDE22EC84F9700AE2408 /* HomeView.swift */; };
+		E2A8EDEB2EC84F9700AE2408 /* WhisperCandidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDD82EC84F9700AE2408 /* WhisperCandidate.swift */; };
+		E2A8EDEC2EC84F9700AE2408 /* MomentText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDE32EC84F9700AE2408 /* MomentText.swift */; };
+		E2A8EDED2EC84F9700AE2408 /* WhisperEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDDE2EC84F9700AE2408 /* WhisperEngine.swift */; };
+		E2A8EDEE2EC84F9700AE2408 /* MotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDDD2EC84F9700AE2408 /* MotionService.swift */; };
+		E2A8EDEF2EC84F9700AE2408 /* MomentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDD72EC84F9700AE2408 /* MomentState.swift */; };
+		E2A8EDF02EC84F9700AE2408 /* Geogate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDD62EC84F9700AE2408 /* Geogate.swift */; };
+		E2A8EDF12EC84F9700AE2408 /* MockContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDDC2EC84F9700AE2408 /* MockContentService.swift */; };
+		E2A8EDF22EC84F9700AE2408 /* AppEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDD52EC84F9700AE2408 /* AppEvent.swift */; };
+		E2A8EDF32EC84F9700AE2408 /* ContextServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDDA2EC84F9700AE2408 /* ContextServiceProtocol.swift */; };
+		E2A8EDF42EC84F9700AE2408 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDDB2EC84F9700AE2408 /* LocationService.swift */; };
+		E2A8EDF52EC84F9700AE2408 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDE12EC84F9700AE2408 /* DebugView.swift */; };
+		E2A8EDF62EC84F9700AE2408 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDE02EC84F9700AE2408 /* ContentView.swift */; };
+		E2A8EDF72EC84F9700AE2408 /* OrbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDE42EC84F9700AE2408 /* OrbView.swift */; };
+		E2A8EDF82EC84F9700AE2408 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8EDE52EC84F9700AE2408 /* PrimaryButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E2A8EDD32EC84F9700AE2408 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
+		E2A8EDD52EC84F9700AE2408 /* AppEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEvent.swift; sourceTree = "<group>"; };
+		E2A8EDD62EC84F9700AE2408 /* Geogate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geogate.swift; sourceTree = "<group>"; };
+		E2A8EDD72EC84F9700AE2408 /* MomentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentState.swift; sourceTree = "<group>"; };
+		E2A8EDD82EC84F9700AE2408 /* WhisperCandidate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperCandidate.swift; sourceTree = "<group>"; };
+		E2A8EDDA2EC84F9700AE2408 /* ContextServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextServiceProtocol.swift; sourceTree = "<group>"; };
+		E2A8EDDB2EC84F9700AE2408 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		E2A8EDDC2EC84F9700AE2408 /* MockContentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockContentService.swift; sourceTree = "<group>"; };
+		E2A8EDDD2EC84F9700AE2408 /* MotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionService.swift; sourceTree = "<group>"; };
+		E2A8EDDE2EC84F9700AE2408 /* WhisperEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperEngine.swift; sourceTree = "<group>"; };
+		E2A8EDE02EC84F9700AE2408 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E2A8EDE12EC84F9700AE2408 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
+		E2A8EDE22EC84F9700AE2408 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		E2A8EDE32EC84F9700AE2408 /* MomentText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentText.swift; sourceTree = "<group>"; };
+		E2A8EDE42EC84F9700AE2408 /* OrbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbView.swift; sourceTree = "<group>"; };
+		E2A8EDE52EC84F9700AE2408 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		E2A8EDE62EC84F9700AE2408 /* StatusBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBadge.swift; sourceTree = "<group>"; };
 		E2AF915F2EC7D41D00E34C99 /* Contextual.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contextual.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2AF916D2EC7D6A200E34C99 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
-		E2AF916E2EC7D6A200E34C99 /* Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
-		E2AF91702EC7D6A200E34C99 /* placeholder.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder.txt; sourceTree = "<group>"; };
-		E2AF91732EC7D6A200E34C99 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
-		E2AF91752EC7D6A200E34C99 /* AppEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEvent.swift; sourceTree = "<group>"; };
-		E2AF91762EC7D6A200E34C99 /* Geogate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geogate.swift; sourceTree = "<group>"; };
-		E2AF91772EC7D6A200E34C99 /* WhisperCandidate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperCandidate.swift; sourceTree = "<group>"; };
-		E2AF91792EC7D6A200E34C99 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
-		E2AF917A2EC7D6A200E34C99 /* MotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionService.swift; sourceTree = "<group>"; };
-		E2AF917B2EC7D6A200E34C99 /* WhisperEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperEngine.swift; sourceTree = "<group>"; };
-		E2AF917D2EC7D6A200E34C99 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		E2AF917E2EC7D6A200E34C99 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
-		E2AF917F2EC7D6A200E34C99 /* StatusBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBadge.swift; sourceTree = "<group>"; };
 		E2AF918F2EC7D93C00E34C99 /* Contextual-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Contextual-Info.plist"; sourceTree = "<group>"; };
-		E2AF91902EC7DD3100E34C99 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		E2AF91922EC7DD4300E34C99 /* OrbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbView.swift; sourceTree = "<group>"; };
-		E2AF91942EC7DD5500E34C99 /* MomentText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentText.swift; sourceTree = "<group>"; };
-		E2AF91962EC7DD6700E34C99 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
-		E2AF91982EC7DD7500E34C99 /* MomentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentState.swift; sourceTree = "<group>"; };
-		E2AF919A2EC7DDED00E34C99 /* ContextServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextServiceProtocol.swift; sourceTree = "<group>"; };
-		E2AF919C2EC7DE0300E34C99 /* MockContentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockContentService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,13 +59,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E2A8EDD42EC84F9700AE2408 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E2A8EDD32EC84F9700AE2408 /* AppMain.swift */,
+			);
+			name = App;
+			path = Sources/App;
+			sourceTree = "<group>";
+		};
+		E2A8EDD92EC84F9700AE2408 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E2A8EDD52EC84F9700AE2408 /* AppEvent.swift */,
+				E2A8EDD62EC84F9700AE2408 /* Geogate.swift */,
+				E2A8EDD72EC84F9700AE2408 /* MomentState.swift */,
+				E2A8EDD82EC84F9700AE2408 /* WhisperCandidate.swift */,
+			);
+			name = Models;
+			path = Sources/Models;
+			sourceTree = "<group>";
+		};
+		E2A8EDDF2EC84F9700AE2408 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E2A8EDDA2EC84F9700AE2408 /* ContextServiceProtocol.swift */,
+				E2A8EDDB2EC84F9700AE2408 /* LocationService.swift */,
+				E2A8EDDC2EC84F9700AE2408 /* MockContentService.swift */,
+				E2A8EDDD2EC84F9700AE2408 /* MotionService.swift */,
+				E2A8EDDE2EC84F9700AE2408 /* WhisperEngine.swift */,
+			);
+			name = Services;
+			path = Sources/Services;
+			sourceTree = "<group>";
+		};
+		E2A8EDE72EC84F9700AE2408 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E2A8EDE02EC84F9700AE2408 /* ContentView.swift */,
+				E2A8EDE12EC84F9700AE2408 /* DebugView.swift */,
+				E2A8EDE22EC84F9700AE2408 /* HomeView.swift */,
+				E2A8EDE32EC84F9700AE2408 /* MomentText.swift */,
+				E2A8EDE42EC84F9700AE2408 /* OrbView.swift */,
+				E2A8EDE52EC84F9700AE2408 /* PrimaryButton.swift */,
+				E2A8EDE62EC84F9700AE2408 /* StatusBadge.swift */,
+			);
+			name = Views;
+			path = Sources/Views;
+			sourceTree = "<group>";
+		};
 		E2AF91562EC7D41D00E34C99 = {
 			isa = PBXGroup;
 			children = (
+				E2A8EDD42EC84F9700AE2408 /* App */,
+				E2A8EDD92EC84F9700AE2408 /* Models */,
+				E2A8EDDF2EC84F9700AE2408 /* Services */,
+				E2A8EDE72EC84F9700AE2408 /* Views */,
 				E2AF918F2EC7D93C00E34C99 /* Contextual-Info.plist */,
-				E2AF916D2EC7D6A200E34C99 /* README.md */,
-				E2AF91722EC7D6A200E34C99 /* Resources */,
-				E2AF91812EC7D6A200E34C99 /* Sources */,
 				E2AF91602EC7D41D00E34C99 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,89 +127,6 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
-		};
-		E2AF916F2EC7D6A200E34C99 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				E2AF916E2EC7D6A200E34C99 /* Contents.json */,
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
-		E2AF91712EC7D6A200E34C99 /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-				E2AF91702EC7D6A200E34C99 /* placeholder.txt */,
-			);
-			path = Sounds;
-			sourceTree = "<group>";
-		};
-		E2AF91722EC7D6A200E34C99 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				E2AF916F2EC7D6A200E34C99 /* Assets */,
-				E2AF91712EC7D6A200E34C99 /* Sounds */,
-			);
-			name = Resources;
-			path = ../Resources;
-			sourceTree = SOURCE_ROOT;
-		};
-		E2AF91742EC7D6A200E34C99 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				E2AF91732EC7D6A200E34C99 /* AppMain.swift */,
-			);
-			path = App;
-			sourceTree = "<group>";
-		};
-		E2AF91782EC7D6A200E34C99 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E2AF91982EC7DD7500E34C99 /* MomentState.swift */,
-				E2AF91752EC7D6A200E34C99 /* AppEvent.swift */,
-				E2AF91762EC7D6A200E34C99 /* Geogate.swift */,
-				E2AF91772EC7D6A200E34C99 /* WhisperCandidate.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		E2AF917C2EC7D6A200E34C99 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				E2AF919C2EC7DE0300E34C99 /* MockContentService.swift */,
-				E2AF919A2EC7DDED00E34C99 /* ContextServiceProtocol.swift */,
-				E2AF91792EC7D6A200E34C99 /* LocationService.swift */,
-				E2AF917A2EC7D6A200E34C99 /* MotionService.swift */,
-				E2AF917B2EC7D6A200E34C99 /* WhisperEngine.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		E2AF91802EC7D6A200E34C99 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				E2AF91962EC7DD6700E34C99 /* PrimaryButton.swift */,
-				E2AF91942EC7DD5500E34C99 /* MomentText.swift */,
-				E2AF91922EC7DD4300E34C99 /* OrbView.swift */,
-				E2AF91902EC7DD3100E34C99 /* HomeView.swift */,
-				E2AF917D2EC7D6A200E34C99 /* ContentView.swift */,
-				E2AF917E2EC7D6A200E34C99 /* DebugView.swift */,
-				E2AF917F2EC7D6A200E34C99 /* StatusBadge.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		E2AF91812EC7D6A200E34C99 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				E2AF91742EC7D6A200E34C99 /* App */,
-				E2AF91782EC7D6A200E34C99 /* Models */,
-				E2AF917C2EC7D6A200E34C99 /* Services */,
-				E2AF91802EC7D6A200E34C99 /* Views */,
-			);
-			name = Sources;
-			path = ../Sources;
-			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -228,9 +189,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2AF91822EC7D6A200E34C99 /* placeholder.txt in Resources */,
-				E2AF91832EC7D6A200E34C99 /* README.md in Resources */,
-				E2AF91842EC7D6A200E34C99 /* Contents.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,23 +199,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2AF91852EC7D6A200E34C99 /* WhisperCandidate.swift in Sources */,
-				E2AF91862EC7D6A200E34C99 /* MotionService.swift in Sources */,
-				E2AF91932EC7DD4600E34C99 /* OrbView.swift in Sources */,
-				E2AF91952EC7DD5A00E34C99 /* MomentText.swift in Sources */,
-				E2AF91972EC7DD6E00E34C99 /* PrimaryButton.swift in Sources */,
-				E2AF91872EC7D6A200E34C99 /* ContentView.swift in Sources */,
-				E2AF91882EC7D6A200E34C99 /* AppEvent.swift in Sources */,
-				E2AF91892EC7D6A200E34C99 /* Geogate.swift in Sources */,
-				E2AF91912EC7DD3400E34C99 /* HomeView.swift in Sources */,
-				E2AF918A2EC7D6A200E34C99 /* LocationService.swift in Sources */,
-				E2AF918B2EC7D6A200E34C99 /* AppMain.swift in Sources */,
-				E2AF918C2EC7D6A200E34C99 /* DebugView.swift in Sources */,
-				E2AF91992EC7DD7800E34C99 /* MomentState.swift in Sources */,
-				E2AF918D2EC7D6A200E34C99 /* StatusBadge.swift in Sources */,
-				E2AF918E2EC7D6A200E34C99 /* WhisperEngine.swift in Sources */,
-				E2AF919D2EC7DE0800E34C99 /* MockContentService.swift in Sources */,
-				E2AF919B2EC7DDF300E34C99 /* ContextServiceProtocol.swift in Sources */,
+				E2A8EDE82EC84F9700AE2408 /* StatusBadge.swift in Sources */,
+				E2A8EDE92EC84F9700AE2408 /* AppMain.swift in Sources */,
+				E2A8EDEA2EC84F9700AE2408 /* HomeView.swift in Sources */,
+				E2A8EDEB2EC84F9700AE2408 /* WhisperCandidate.swift in Sources */,
+				E2A8EDEC2EC84F9700AE2408 /* MomentText.swift in Sources */,
+				E2A8EDED2EC84F9700AE2408 /* WhisperEngine.swift in Sources */,
+				E2A8EDEE2EC84F9700AE2408 /* MotionService.swift in Sources */,
+				E2A8EDEF2EC84F9700AE2408 /* MomentState.swift in Sources */,
+				E2A8EDF02EC84F9700AE2408 /* Geogate.swift in Sources */,
+				E2A8EDF12EC84F9700AE2408 /* MockContentService.swift in Sources */,
+				E2A8EDF22EC84F9700AE2408 /* AppEvent.swift in Sources */,
+				E2A8EDF32EC84F9700AE2408 /* ContextServiceProtocol.swift in Sources */,
+				E2A8EDF42EC84F9700AE2408 /* LocationService.swift in Sources */,
+				E2A8EDF52EC84F9700AE2408 /* DebugView.swift in Sources */,
+				E2A8EDF62EC84F9700AE2408 /* ContentView.swift in Sources */,
+				E2A8EDF72EC84F9700AE2408 /* OrbView.swift in Sources */,
+				E2A8EDF82EC84F9700AE2408 /* PrimaryButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
