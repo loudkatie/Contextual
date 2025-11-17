@@ -10,6 +10,16 @@
 		E2AF915F2EC7D41D00E34C99 /* Contextual.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contextual.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E264E7AD2ECBB0A100A50FFC /* Exceptions for "Resources" folder in "Contextual" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Contextual-Info.plist",
+			);
+			target = E2AF915E2EC7D41D00E34C99 /* Contextual */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E2B1BD622EC8FC060032999F /* Sources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -18,6 +28,9 @@
 		};
 		E2B1BD7C2EC8FC250032999F /* Resources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E264E7AD2ECBB0A100A50FFC /* Exceptions for "Resources" folder in "Contextual" target */,
+			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
