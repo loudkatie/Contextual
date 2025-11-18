@@ -2,52 +2,133 @@
 //  WhisperEngine.swift
 //  Contextual
 //
+//  Created by Loud Labs Team
+//  Copyright © 2025 Loud Labs. All rights reserved.
+//
 
 import Foundation
 import AVFoundation
 import Combine
+import UIKit
 
-final class WhisperEngine: ObservableObject {
-
-    static let shared = WhisperEngine()
-
-    private var audioPlayer: AVAudioPlayer?
+/// WhisperEngine orchestrates the delivery of audio-first whispers.
+/// It manages TTS, haptics, transcripts, and rate limiting.
+final class WhisperEngine: NSObject, ObservableObject {
+    
+    // MARK: - Published State
+    
+    /// The text of the last whisper delivered (for display in transcript chip)
+    @Published var lastTranscript: String?
+    
+    /// Whether a whisper is currently playing
+    @Published var isWhispering: Bool = false
+    
+    // MARK: - Dependencies
+    
+    private let synthesizer = AVSpeechSynthesizer()
+    
+    // MARK: - State
+    
+    private var lastWhisperDate: Date?
+    private var lastWhisperCategory: String?
     private var cancellables = Set<AnyCancellable>()
-
-    private let queue = DispatchQueue(label: "contextual.whisper.engine")
-
-    // MARK: - Public Trigger API
-    func trigger(_ candidate: WhisperCandidate) {
-        // 👇 NEW LINE YOU ASKED FOR
-        print("[WhisperEngine] Candidate triggered:", candidate)
-
-        queue.async { [weak self] in
-            self?.playSound(named: "whisper-default")
-        }
+    
+    // MARK: - Configuration
+    
+    private let globalRateLimitSeconds: TimeInterval = 120  // 2 minutes between any whispers
+    private let categoryRateLimitSeconds: TimeInterval = 300  // 5 minutes per category
+    
+    // MARK: - Initialization
+    
+    override init() {
+        super.init()
+        synthesizer.delegate = self
     }
-
-    // MARK: - Private playback handler
-    private func playSound(named name: String) {
-        guard let url = Bundle.main.url(forResource: name, withExtension: "wav") else {
-            print("[WhisperEngine] ERROR — sound not found:", name)
+    
+    // MARK: - Public Interface
+    
+    /// Evaluates a whisper and delivers it if rate limits allow.
+    /// - Parameters:
+    ///   - text: The whisper text to speak
+    ///   - category: The whisper category (for category-specific rate limiting)
+    func speak(text: String, category: String) {
+        // Check rate limits
+        guard canWhisper(category: category) else {
+            print("⏸️ WhisperEngine: Rate limit blocked whisper in category '\(category)'")
             return
         }
-
-        do {
-            let audioSession = AVAudioSession.sharedInstance()
-            try audioSession.setCategory(.playback, mode: .default, options: [.mixWithOthers])
-            try audioSession.setActive(true)
-
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer?.volume = 1.0
-            audioPlayer?.prepareToPlay()
-            audioPlayer?.play()
-
-            print("[WhisperEngine] Playing:", name)
-
-        } catch {
-            print("[WhisperEngine] Playback error:", error.localizedDescription)
+        
+        print("🔊 WhisperEngine: Delivering whisper - \(text)")
+        
+        // Trigger haptic (light tap)
+        triggerHaptic()
+        
+        // Set state
+        isWhispering = true
+        lastTranscript = text
+        
+        // Speak the whisper
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.rate = 0.48  // Slightly slower than default (more "whisper-like")
+        utterance.volume = 0.85
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        
+        synthesizer.speak(utterance)
+        
+        // Record whisper for rate limiting
+        lastWhisperDate = Date()
+        lastWhisperCategory = category
+        
+        // Auto-clear transcript after 4 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) { [weak self] in
+            self?.lastTranscript = nil
         }
+    }
+    
+    // MARK: - Private Helpers
+    
+    private func canWhisper(category: String) -> Bool {
+        guard let lastDate = lastWhisperDate else {
+            return true  // Never whispered before
+        }
+        
+        let timeSinceLastWhisper = Date().timeIntervalSince(lastDate)
+        
+        // Check global rate limit
+        if timeSinceLastWhisper < globalRateLimitSeconds {
+            return false
+        }
+        
+        // Check category-specific rate limit
+        if lastWhisperCategory == category && timeSinceLastWhisper < categoryRateLimitSeconds {
+            return false
+        }
+        
+        return true
+    }
+    
+    private func triggerHaptic() {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare()
+        generator.impactOccurred()
     }
 }
 
+// MARK: - AVSpeechSynthesizerDelegate
+
+extension WhisperEngine: AVSpeechSynthesizerDelegate {
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        DispatchQueue.main.async {
+            self.isWhispering = false
+        }
+        print("✅ WhisperEngine: Whisper finished")
+    }
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
+        DispatchQueue.main.async {
+            self.isWhispering = false
+        }
+        print("❌ WhisperEngine: Whisper cancelled")
+    }
+}

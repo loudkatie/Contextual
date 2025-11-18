@@ -45,6 +45,14 @@ final class LocationService: NSObject, ObservableObject, CLLocationManagerDelega
     func stopUpdating() {
         manager.stopUpdatingLocation()
     }
+    
+    func registerGate(id: String, center: CLLocationCoordinate2D, radius: CLLocationDistance) {
+        let region = CLCircularRegion(center: center, radius: radius, identifier: id)
+        region.notifyOnEntry = true
+        region.notifyOnExit = true
+        manager.startMonitoring(for: region)
+        print("📍 LocationService: Registered geofence '\(id)' at \(center.latitude), \(center.longitude)")
+    }
 
     // MARK: - CLLocationManager Delegate
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -60,6 +68,22 @@ final class LocationService: NSObject, ObservableObject, CLLocationManagerDelega
 
         // Fake moment-state inference for now
         updateStateBasedOnLocation(loc)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        guard let circularRegion = region as? CLCircularRegion else { return }
+        lastGateEvent = "enter:\(circularRegion.identifier)"
+        print("🚪 LocationService: Entered region '\(circularRegion.identifier)'")
+    }
+
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        guard let circularRegion = region as? CLCircularRegion else { return }
+        lastGateEvent = "exit:\(circularRegion.identifier)"
+        print("🚶 LocationService: Exited region '\(circularRegion.identifier)'")
+    }
+
+    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+        print("❌ LocationService: Monitoring failed for region: \(error.localizedDescription)")
     }
 
     // MARK: - State Logic (temporary placeholder)
