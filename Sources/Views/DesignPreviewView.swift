@@ -61,7 +61,7 @@ struct DesignPreviewView: View {
                     AnyView(
                         // Unsafe cast to OrbView assuming it has an initializer size: CGFloat
                         // Fallback to Circle if casting fails
-                        (orbViewType as? View.Type).map {_ in 
+                        (orbViewType as? (any View).Type).map {_ in 
                             // Since we cannot instantiate unknown View directly,
                             // fallback instead - safer for this context
                             Circle()

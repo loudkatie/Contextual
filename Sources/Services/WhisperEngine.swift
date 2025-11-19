@@ -39,10 +39,24 @@ final class WhisperEngine: NSObject, ObservableObject {
     private let categoryRateLimitSeconds: TimeInterval = 300  // 5 minutes per category
     
     // MARK: - Initialization
-    
+
     override init() {
         super.init()
         synthesizer.delegate = self
+        configureAudioSession()
+    }
+
+    // MARK: - Audio Session Setup
+
+    private func configureAudioSession() {
+        do {
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            print("✅ WhisperEngine: Audio session configured for background playback")
+        } catch {
+            print("❌ WhisperEngine: Failed to configure audio session: \(error)")
+        }
     }
     
     // MARK: - Public Interface
@@ -69,9 +83,19 @@ final class WhisperEngine: NSObject, ObservableObject {
         
         // Speak the whisper
         let utterance = AVSpeechUtterance(string: text)
-        utterance.rate = 0.48  // Slightly slower than default (more "whisper-like")
-        utterance.volume = 0.85
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+
+        // Voice selection: Try to use a premium, natural-sounding voice
+        if let samanthaVoice = AVSpeechSynthesisVoice(identifier: "com.apple.voice.premium.en-US.Samantha") {
+            utterance.voice = samanthaVoice
+        } else if let voice = AVSpeechSynthesisVoice(language: "en-US") {
+            utterance.voice = voice
+        }
+
+        // Whisper-like pacing: slower and softer
+        utterance.rate = 0.45  // Slightly slower than default for clarity
+        utterance.volume = 0.75  // Softer volume for "whisper" effect
+        utterance.pitchMultiplier = 0.95  // Slightly lower pitch for intimacy
+        utterance.preUtteranceDelay = 0.2  // Brief pause before speaking
         
         synthesizer.speak(utterance)
         

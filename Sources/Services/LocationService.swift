@@ -26,6 +26,10 @@ final class LocationService: NSObject, ObservableObject, CLLocationManagerDelega
     @Published var currentLocation: CLLocation?
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
     @Published var lastGateEvent: String?
+    
+    // MARK: - Callbacks for gate events
+    var onGateEntry: ((String) -> Void)?
+    var onGateExit: ((String) -> Void)?
 
     override private init() {
         super.init()
@@ -74,12 +78,18 @@ final class LocationService: NSObject, ObservableObject, CLLocationManagerDelega
         guard let circularRegion = region as? CLCircularRegion else { return }
         lastGateEvent = "enter:\(circularRegion.identifier)"
         print("🚪 LocationService: Entered region '\(circularRegion.identifier)'")
+        
+        // Trigger callback to GateRuleEngine
+        onGateEntry?(circularRegion.identifier)
     }
 
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         guard let circularRegion = region as? CLCircularRegion else { return }
         lastGateEvent = "exit:\(circularRegion.identifier)"
         print("🚶 LocationService: Exited region '\(circularRegion.identifier)'")
+        
+        // Trigger callback to GateRuleEngine
+        onGateExit?(circularRegion.identifier)
     }
 
     func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {

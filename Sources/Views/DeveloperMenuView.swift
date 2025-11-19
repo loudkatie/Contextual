@@ -9,27 +9,59 @@ import SwiftUI
 import AVFoundation
 
 struct DeveloperMenuView: View {
+    @EnvironmentObject var gateEngine: GateRuleEngine
     @State private var showScreenshotMode = false
 
     var body: some View {
         NavigationStack {
             List {
+                Section("Active Route") {
+                    Picker("Route", selection: Binding(
+                        get: { gateEngine.activeRoute },
+                        set: { gateEngine.switchRoute(to: $0) }
+                    )) {
+                        ForEach(GateRuleEngine.DemoRoute.allCases, id: \.self) { route in
+                            Text(route.rawValue).tag(route)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                }
+
                 Section("Previews") {
                     NavigationLink("Design Preview") { DesignPreviewView() }
                 }
+
                 Section("FTUE") {
                     NavigationLink("Welcome") { WelcomeView(onContinue: {}) }
                     NavigationLink("Permissions Flow") { PermissionsFlowView(onDone: {}) }
                     NavigationLink("Test Whisper") { TestWhisperView() }
                 }
+
                 Section("Tools") {
                     NavigationLink("Debug Tools") { DebugView() }
                     Toggle("Screenshot Mode", isOn: $showScreenshotMode)
                 }
-                Section("Demo") {
-                    Button("Simulate Gate Whisper") {
-                        speak("You’re near University Ave and have 15 minutes free. Want to send Joe the deck now?")
+
+                Section("Quick Tests") {
+                    Button("🎙️ Test Random Whisper") {
+                        speak("You're near University Ave and have 15 minutes free. Want to send Joe the deck now?")
                     }
+                    Button("🧪 Simulate Starbucks Entry") {
+                        LocationService.shared.onGateEntry?("starbucks_sancarlos")
+                    }
+                    Button("🧪 Simulate Blue Bottle Entry") {
+                        LocationService.shared.onGateEntry?("bluebottle_paloalto")
+                    }
+                    Button("🧪 Simulate Dolores Park Entry") {
+                        LocationService.shared.onGateEntry?("dolores_park")
+                    }
+                }
+
+                Section("Reset") {
+                    Button("Reset Onboarding") {
+                        UserDefaults.standard.set(false, forKey: "hasCompletedOnboarding")
+                    }
+                    .foregroundColor(.red)
                 }
             }
             .navigationTitle("Developer Menu")

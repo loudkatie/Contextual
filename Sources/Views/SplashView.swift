@@ -8,33 +8,103 @@
 import SwiftUI
 
 struct SplashView: View {
+    @State private var glowIntensity: Double = 0.6
+
     var body: some View {
         ZStack {
-            Color.white.opacity(0.98).ignoresSafeArea()
+            // Subtle gradient background
+            LinearGradient(
+                colors: [
+                    Color(red: 0.98, green: 0.98, blue: 1.0),
+                    Color(red: 0.95, green: 0.96, blue: 0.99)
+                ],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
 
             VStack(spacing: 28) {
 
-                // MARK: Glyph
-                Image("glyph_star")   // we will add this asset in a moment
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 32, height: 32)
+                // MARK: Glyph (sparkle icon)
+                Image(systemName: "sparkles")
+                    .font(.system(size: 32, weight: .light))
+                    .foregroundColor(Color(red: 0.46, green: 0.52, blue: 0.60))
                     .opacity(0.9)
 
                 // MARK: Wordmark
                 Text("contextual")
-                    .kerning(4.0)                         // WIDE
+                    .kerning(4.0)
                     .font(.system(size: 32, weight: .light))
-                    .foregroundColor(Color(red: 0.46, green: 0.52, blue: 0.60)) // soft holographic silver
+                    .foregroundColor(Color(red: 0.46, green: 0.52, blue: 0.60))
 
-                Spacer().frame(height: 40)
+                Spacer().frame(height: 60)
 
-                // MARK: Orb
-                Image("orb_holo")        // your selected orb
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 240, height: 240)
-                    .shadow(color: .white.opacity(0.4), radius: 40, x: 0, y: 0)
+                // MARK: Simplified Orb
+                ZStack {
+                    // Outer glow
+                    Circle()
+                        .fill(
+                            RadialGradient(
+                                colors: [
+                                    Color.blue.opacity(0.15),
+                                    Color.purple.opacity(0.1),
+                                    Color.clear
+                                ],
+                                center: .center,
+                                startRadius: 60,
+                                endRadius: 180
+                            )
+                        )
+                        .frame(width: 360, height: 360)
+                        .blur(radius: 30)
+                        .opacity(glowIntensity)
+
+                    // Main orb
+                    Circle()
+                        .fill(
+                            RadialGradient(
+                                colors: [
+                                    Color.white.opacity(0.9),
+                                    Color.blue.opacity(0.3),
+                                    Color.purple.opacity(0.2),
+                                    Color.white.opacity(0.1)
+                                ],
+                                center: UnitPoint(x: 0.4, y: 0.4),
+                                startRadius: 40,
+                                endRadius: 120
+                            )
+                        )
+                        .frame(width: 240, height: 240)
+                        .blur(radius: 2)
+
+                    // Inner highlight
+                    Circle()
+                        .fill(
+                            RadialGradient(
+                                colors: [
+                                    Color.white.opacity(0.8),
+                                    Color.clear
+                                ],
+                                center: .center,
+                                startRadius: 0,
+                                endRadius: 50
+                            )
+                        )
+                        .frame(width: 100, height: 100)
+                        .blur(radius: 15)
+                        .offset(x: -20, y: -20)
+                }
+                .frame(width: 240, height: 240)
+            }
+        }
+        .onAppear {
+            // Gentle breathing animation
+            withAnimation(
+                Animation
+                    .easeInOut(duration: 2.5)
+                    .repeatForever(autoreverses: true)
+            ) {
+                glowIntensity = 1.0
             }
         }
     }

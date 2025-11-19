@@ -10,6 +10,7 @@
 	<array>
 		<string>location</string>
 		<string>fetch</string>
+		<string>audio</string>
 	</array>
 	<key>NSMotionUsageDescription</key>
 	<string>Contextual uses motion data to detect hands-free events and reduce battery impact.
