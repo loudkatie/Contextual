@@ -36,13 +36,13 @@ struct PassiveHomeView: View {
                 .ignoresSafeArea()
                 
                 VStack(spacing: 0) {
-                    
-                    // Delicate wordmark at top
-                    Text("c o n t e x t u a l")
-                        .font(.system(size: 13, weight: .light, design: .default))
-                        .tracking(4) // Letter spacing
-                        .foregroundColor(Color.white.opacity(0.35))
-                        .padding(.top, 60)
+
+                    // Delicate wordmark at top - more spaced, more transparent
+                    Text("c  o  n  t  e  x  t  u  a  l")
+                        .font(.system(size: 11, weight: .ultraLight, design: .default))
+                        .tracking(8) // More letter spacing
+                        .foregroundColor(Color.white.opacity(0.25))
+                        .padding(.top, 70)
                     
                     Spacer()
                     
@@ -91,49 +91,68 @@ struct PassiveHomeView: View {
                     Spacer()
                         .frame(height: 40)
                     
-                    // Controls
-                    VStack(spacing: 16) {
+                    // Controls - fixed positioning
+                    VStack(spacing: 12) {
+                        // Help/Chat button
+                        NavigationLink {
+                            DeveloperMenuView()  // TODO: Replace with chat interface
+                        } label: {
+                            HStack(spacing: 8) {
+                                Image(systemName: "questionmark.circle")
+                                    .font(.system(size: 14, weight: .medium))
+                                Text("Talk to Contextual")
+                                    .font(.system(size: 14, weight: .medium))
+                            }
+                            .foregroundColor(.white.opacity(0.85))
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 20)
+                            .background(
+                                Capsule()
+                                    .fill(Color.white.opacity(0.15))
+                                    .overlay(
+                                        Capsule()
+                                            .stroke(Color.white.opacity(0.25), lineWidth: 1)
+                                    )
+                            )
+                        }
+
                         // Pause/Resume Control
                         Button(action: toggleMonitoring) {
                             HStack(spacing: 8) {
                                 Image(systemName: isMonitoring ? "pause.fill" : "play.fill")
-                                    .font(.system(size: 13, weight: .semibold))
-                                Text(isMonitoring ? "Pause Whispers" : "Resume Whispers")
-                                    .font(.system(size: 15, weight: .medium))
+                                    .font(.system(size: 12, weight: .semibold))
+                                Text(isMonitoring ? "Pause" : "Resume")
+                                    .font(.system(size: 14, weight: .medium))
                             }
-                            .foregroundColor(.white)
-                            .padding(.vertical, 12)
-                            .padding(.horizontal, 24)
+                            .foregroundColor(.white.opacity(0.7))
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 18)
                             .background(
                                 Capsule()
-                                    .fill(Color.white.opacity(0.12))
-                                    .overlay(
-                                        Capsule()
-                                            .stroke(Color.white.opacity(0.2), lineWidth: 1)
-                                    )
+                                    .fill(Color.white.opacity(0.10))
                             )
                         }
-                        
-                        // Dev Tools Link
+
+                        // Dev Tools Link (smaller)
                         NavigationLink {
                             DeveloperMenuView()
                         } label: {
-                            HStack(spacing: 6) {
+                            HStack(spacing: 4) {
                                 Image(systemName: "hammer.fill")
-                                    .font(.system(size: 11, weight: .semibold))
-                                Text("Developer Menu")
-                                    .font(.system(size: 13, weight: .medium))
+                                    .font(.system(size: 10, weight: .semibold))
+                                Text("Dev")
+                                    .font(.system(size: 11, weight: .medium))
                             }
-                            .foregroundColor(Color.white.opacity(0.5))
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 16)
+                            .foregroundColor(Color.white.opacity(0.4))
+                            .padding(.vertical, 6)
+                            .padding(.horizontal, 12)
                             .background(
                                 Capsule()
-                                    .fill(Color.white.opacity(0.08))
+                                    .fill(Color.white.opacity(0.06))
                             )
                         }
                     }
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 40)
                 }
             }
             .navigationBarHidden(true)

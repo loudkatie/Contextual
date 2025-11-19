@@ -38,10 +38,9 @@ struct AppMain: App {
         locationService.onGateExit = { [gateEngine] gateId in
             gateEngine.handleGateExit(gateId: gateId)
         }
-        
-        // Request permissions on launch
-        locationService.requestAuthorization()
-        
+
+        // DON'T request permissions on launch - let onboarding handle it
+
         print("✅ AppMain: Services initialized and wired")
     }
     
@@ -50,13 +49,13 @@ struct AppMain: App {
             if !hasCompletedOnboarding {
                 SplashView()
                     .onAppear {
-                        // Auto-transition to onboarding after splash
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        // Auto-transition to onboarding after splash - let it breathe (4 seconds)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                             showOnboarding = true
                         }
                     }
                     .fullScreenCover(isPresented: $showOnboarding) {
-                        OnboardingView()
+                        ConversationalOnboardingView()
                             .environmentObject(locationService)
                             .environmentObject(motionService)
                             .environmentObject(whisperEngine)

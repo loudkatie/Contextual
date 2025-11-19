@@ -28,14 +28,13 @@ struct SplashView: View {
                 // MARK: Glyph (sparkle icon)
                 Image(systemName: "sparkles")
                     .font(.system(size: 32, weight: .light))
-                    .foregroundColor(Color(red: 0.46, green: 0.52, blue: 0.60))
-                    .opacity(0.9)
+                    .foregroundColor(Color(red: 0.15, green: 0.20, blue: 0.35))
 
                 // MARK: Wordmark
                 Text("contextual")
                     .kerning(4.0)
                     .font(.system(size: 32, weight: .light))
-                    .foregroundColor(Color(red: 0.46, green: 0.52, blue: 0.60))
+                    .foregroundColor(Color(red: 0.15, green: 0.20, blue: 0.35))
 
                 Spacer().frame(height: 60)
 
@@ -98,14 +97,18 @@ struct SplashView: View {
             }
         }
         .onAppear {
-            // Gentle breathing animation
+            // Gentle breathing animation - let it breathe
             withAnimation(
                 Animation
-                    .easeInOut(duration: 2.5)
+                    .easeInOut(duration: 3.5)
                     .repeatForever(autoreverses: true)
             ) {
                 glowIntensity = 1.0
             }
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            // Allow tap to skip (hidden affordance)
         }
     }
 }

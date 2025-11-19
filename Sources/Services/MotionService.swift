@@ -28,10 +28,10 @@ final class MotionService: NSObject, ObservableObject {
 
     override init() {
         super.init()
-        startUpdates()
+        // Don't auto-start - let onboarding trigger this
     }
 
-    private func startUpdates() {
+    func startUpdates() {
         guard CMMotionActivityManager.isActivityAvailable() else {
             state = .unknown
             return
