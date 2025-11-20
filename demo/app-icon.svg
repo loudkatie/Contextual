@@ -1,61 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- iOS app icon background gradient -->
-    <radialGradient id="iconBg" cx="50%" cy="40%" r="70%">
+    <!-- Background with dreamy gradient -->
+    <radialGradient id="iconBgOuter" cx="50%" cy="35%" r="75%">
       <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#F8F8FF;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#F8F8FF;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#F0F0FF;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#E6E6FA;stop-opacity:1" />
     </radialGradient>
 
-    <!-- Soul seed gradient for icon -->
-    <radialGradient id="iconSoul" cx="50%" cy="50%" r="45%">
+    <!-- Soul seed main gradient -->
+    <radialGradient id="soulMain" cx="50%" cy="50%" r="50%">
       <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
-      <stop offset="40%" style="stop-color:#F8F8FF;stop-opacity:1" />
-      <stop offset="75%" style="stop-color:#E6E6FA;stop-opacity:0.8" />
+      <stop offset="40%" style="stop-color:#FEFEFF;stop-opacity:0.98" />
+      <stop offset="70%" style="stop-color:#F0F0FF;stop-opacity:0.85" />
+      <stop offset="90%" style="stop-color:#E6E6FA;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#E0F4FF;stop-opacity:0.3" />
+    </radialGradient>
+
+    <!-- Iridescent overlay -->
+    <linearGradient id="iridescent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E0F4FF;stop-opacity:0.4" />
+      <stop offset="25%" style="stop-color:#F8F8FF;stop-opacity:0.3" />
+      <stop offset="50%" style="stop-color:#FFE8F5;stop-opacity:0.35" />
+      <stop offset="75%" style="stop-color:#E6E6FA;stop-opacity:0.3" />
       <stop offset="100%" style="stop-color:#E0F4FF;stop-opacity:0.4" />
-    </radialGradient>
+    </linearGradient>
 
-    <!-- Sparkle gradient -->
-    <radialGradient id="sparkleGrad">
-      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.9" />
-      <stop offset="100%" style="stop-color:#E8E8F0;stop-opacity:0" />
-    </radialGradient>
+    <!-- Shimmer gradient -->
+    <linearGradient id="shimmer" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.6" />
+      <stop offset="50%" style="stop-color:#F8F8FF;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:0.6" />
+    </linearGradient>
 
-    <!-- Glow effect -->
-    <filter id="iconGlow">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+    <!-- Glow filter -->
+    <filter id="softGlow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="16" result="blur" />
       <feMerge>
+        <feMergeNode in="blur" />
         <feMergeNode in="blur" />
         <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
+
+    <!-- Ambient glow -->
+    <filter id="ambientGlow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="24" />
+    </filter>
+
+    <!-- Sparkle gradient -->
+    <radialGradient id="sparkleGrad">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.95" />
+      <stop offset="50%" style="stop-color:#F8F8FF;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#E8E8F0;stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Bokeh sparkle -->
+    <radialGradient id="bokeh">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#FFFFFF;stop-opacity:0.8" />
+      <stop offset="60%" style="stop-color:#E8E8F0;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#E0F4FF;stop-opacity:0" />
+    </radialGradient>
   </defs>
 
   <!-- Background -->
-  <rect width="1024" height="1024" fill="url(#iconBg)" rx="226" />
+  <rect width="1024" height="1024" fill="url(#iconBgOuter)" rx="226" />
 
-  <!-- Subtle ambient glow -->
-  <circle cx="512" cy="450" r="400" fill="#FFFFFF" opacity="0.15" filter="url(#iconGlow)" />
+  <!-- Ambient atmosphere layers -->
+  <circle cx="350" cy="300" r="450" fill="#FFFFFF" opacity="0.08" filter="url(#ambientGlow)" />
+  <circle cx="700" cy="650" r="400" fill="#FFE8F5" opacity="0.06" filter="url(#ambientGlow)" />
+  <circle cx="512" cy="420" r="500" fill="#E0F4FF" opacity="0.05" filter="url(#ambientGlow)" />
 
-  <!-- Main soul seed -->
-  <circle cx="512" cy="480" r="280" fill="url(#iconSoul)" filter="url(#iconGlow)" />
+  <!-- Outer glow around soul seed -->
+  <circle cx="512" cy="480" r="380" fill="#FFFFFF" opacity="0.12" filter="url(#softGlow)" />
+  <circle cx="512" cy="480" r="320" fill="#F8F8FF" opacity="0.15" filter="url(#softGlow)" />
 
-  <!-- Inner shimmer -->
-  <circle cx="512" cy="480" r="250" fill="#FFFFFF" opacity="0.2" />
+  <!-- Main soul seed orb -->
+  <circle cx="512" cy="480" r="290" fill="url(#soulMain)" filter="url(#softGlow)" />
 
-  <!-- Highlights (membrane effect) -->
-  <ellipse cx="420" cy="420" rx="120" ry="180" fill="#FFFFFF" opacity="0.25" transform="rotate(-20 420 420)" />
-  <ellipse cx="600" cy="450" rx="90" ry="150" fill="#FFFFFF" opacity="0.18" transform="rotate(18 600 450)" />
+  <!-- Iridescent layer -->
+  <circle cx="512" cy="480" r="285" fill="url(#iridescent)" opacity="0.7" />
 
-  <!-- Delicate sparkles -->
-  <circle cx="350" cy="350" r="18" fill="url(#sparkleGrad)" opacity="0.8" />
-  <circle cx="680" cy="380" r="14" fill="url(#sparkleGrad)" opacity="0.7" />
-  <circle cx="420" cy="680" r="22" fill="url(#sparkleGrad)" opacity="0.75" />
-  <circle cx="620" cy="640" r="16" fill="url(#sparkleGrad)" opacity="0.65" />
-  <circle cx="280" cy="500" r="12" fill="url(#sparkleGrad)" opacity="0.7" />
-  <circle cx="740" cy="520" r="20" fill="url(#sparkleGrad)" opacity="0.8" />
+  <!-- Inner shimmer highlights -->
+  <circle cx="512" cy="480" r="260" fill="url(#shimmer)" opacity="0.5" />
 
-  <!-- Edge refinement -->
-  <circle cx="512" cy="480" r="278" fill="none" stroke="#E6E6FA" stroke-width="3" opacity="0.4" />
+  <!-- Membrane highlights (fairy wing effect) -->
+  <ellipse cx="420" cy="410" rx="140" ry="200" fill="#FFFFFF" opacity="0.25"
+           transform="rotate(-22 420 410)" filter="blur(12px)" />
+  <ellipse cx="600" cy="450" rx="110" ry="170" fill="#FFFFFF" opacity="0.2"
+           transform="rotate(20 600 450)" filter="blur(10px)" />
+  <ellipse cx="480" cy="520" rx="90" ry="140" fill="url(#iridescent)" opacity="0.18"
+           transform="rotate(-8 480 520)" filter="blur(8px)" />
+
+  <!-- Delicate edge highlights -->
+  <circle cx="512" cy="480" r="288" fill="none" stroke="url(#shimmer)"
+          stroke-width="3" opacity="0.4" />
+  <circle cx="512" cy="480" r="284" fill="none" stroke="#FFFFFF"
+          stroke-width="1" opacity="0.6" />
+
+  <!-- Bokeh sparkles -->
+  <circle cx="320" cy="320" r="32" fill="url(#bokeh)" opacity="0.7" filter="blur(2px)" />
+  <circle cx="710" cy="350" r="26" fill="url(#bokeh)" opacity="0.65" filter="blur(2px)" />
+  <circle cx="680" cy="620" r="38" fill="url(#bokeh)" opacity="0.75" filter="blur(3px)" />
+  <circle cx="380" cy="680" r="30" fill="url(#bokeh)" opacity="0.7" filter="blur(2px)" />
+  <circle cx="260" cy="480" r="22" fill="url(#bokeh)" opacity="0.6" filter="blur(1px)" />
+  <circle cx="750" cy="520" r="34" fill="url(#bokeh)" opacity="0.7" filter="blur(2px)" />
+
+  <!-- Tiny shimmer particles -->
+  <circle cx="420" cy="280" r="10" fill="url(#sparkleGrad)" opacity="0.8" />
+  <circle cx="610" cy="310" r="8" fill="url(#sparkleGrad)" opacity="0.75" />
+  <circle cx="350" cy="580" r="12" fill="url(#sparkleGrad)" opacity="0.7" />
+  <circle cx="660" cy="560" r="9" fill="url(#sparkleGrad)" opacity="0.8" />
+  <circle cx="280" cy="420" r="7" fill="url(#sparkleGrad)" opacity="0.65" />
+  <circle cx="720" cy="450" r="11" fill="url(#sparkleGrad)" opacity="0.75" />
+  <circle cx="500" cy="240" r="8" fill="url(#sparkleGrad)" opacity="0.7" />
+  <circle cx="550" cy="700" r="10" fill="url(#sparkleGrad)" opacity="0.75" />
+
+  <!-- Final highlight -->
+  <circle cx="450" cy="420" r="60" fill="#FFFFFF" opacity="0.15" filter="blur(20px)" />
 </svg>
