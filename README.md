@@ -1,6 +1,37 @@
-# Contextual iOS App
+# Contextual — The Soul Seed
 
-This directory contains the SwiftUI implementation of the Contextual mobile experience.  
+> *Not an app. A presence.*
+
+An ambient intelligence that walks with you, senses hidden layers in the world, and whispers only when the moment is right.
+
+---
+
+## 🌬️ Interactive Demo (NEW!)
+
+**For Friday's team meeting**, we've created a high-fidelity interactive prototype that shows the **magic and feeling** of Contextual:
+
+👉 **[Start here: `/demo`](./demo/)**
+
+- Breathing soul seed visual (alive, ethereal, sparkling)
+- Proactive ASMR voice whispers
+- Three-part interaction (tap → glance → whisper)
+- Soul-speed permission flow
+- Complete ~3.5 minute experience
+
+**To run:**
+```bash
+cd demo
+python3 -m http.server 8000
+# Then add to iPhone home screen for full effect
+```
+
+See [`demo/README.md`](./demo/README.md) for full instructions.
+
+---
+
+## iOS App
+
+This directory also contains the SwiftUI implementation of the native iOS experience.
 It is lightweight, modular, and designed so that engineers can iterate quickly on sensors, inference,
 and the Whisper Engine.
 
@@ -118,4 +149,20 @@ The committed `.xcodeproj` will update accordingly.
 
 ---
 
-This directory is the foundation of the **ambient iOS experience** for Contextual.
+## 📚 Documentation
+
+Complete product planning and specifications:
+
+- **[Soul Seed Specification](./docs/product/soul-seed-specification.md)** — Complete design, technical architecture, and implementation plan
+- **[Team Alignment Deck](./docs/presentations/team-alignment-nov-2025.md)** — Friday Nov 22 meeting slides
+- **[Product Pitch Deck](./docs/presentations/product-pitch.md)** — Investor/demo presentation
+- **[Visual Identity Guide](./docs/design/visual-identity.md)** — Design system and asset specifications
+- **[Architecture](./docs/technical/architecture.md)** — System architecture overview
+
+See [`/docs`](./docs/) for full documentation.
+
+---
+
+This is the foundation of the **ambient iOS experience** for Contextual.
+
+*Let's ship soul seeds.* ✨🌬️
