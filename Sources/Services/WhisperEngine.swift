@@ -24,20 +24,34 @@ final class WhisperEngine: NSObject, ObservableObject {
         synthesizer.delegate = self
     }
 
-    /// Entry point: call this when the app detects something meaningful (gate entry, motion shift, etc.)
+    // MARK: - Public API
+
+    /// Direct whisper delivery for memory whispers and pre-formatted scripts.
+    /// Use this when you have a complete message to speak.
+    func speak(_ message: String) {
+        guard shouldSpeak() else {
+            print("WhisperEngine: Rate limited, skipping whisper")
+            return
+        }
+        deliverWhisper(message)
+    }
+
+    /// Legacy entry point for gate-based events.
+    /// Generates a whisper from event type (enter/exit).
     func evaluate(event: String) {
         let whisper = generateWhisper(from: event)
 
-        // frequency cap (3 per hour as a safeguard)
-        if shouldSpeak(whisper) {
-            speak(whisper)
+        if shouldSpeak() {
+            deliverWhisper(whisper)
         }
     }
+
+    // MARK: - Private Implementation
 
     /// Placeholder for real LLM + ranking logic.
     private func generateWhisper(from event: String) -> String {
         if event.contains("enter") {
-            return "You’ve arrived at a meaningful place."
+            return "You've arrived at a meaningful place."
         }
         if event.contains("exit") {
             return "Leaving now."
@@ -45,16 +59,18 @@ final class WhisperEngine: NSObject, ObservableObject {
         return "Noted."
     }
 
-    private func shouldSpeak(_ whisper: String) -> Bool {
+    /// Rate limit check: 60 seconds between whispers
+    private func shouldSpeak() -> Bool {
         let now = Date()
         if let last = lastWhisperDate,
-           now.timeIntervalSince(last) < 60 { // 60 seconds between whispers
+           now.timeIntervalSince(last) < 60 {
             return false
         }
         return true
     }
 
-    private func speak(_ message: String) {
+    /// Internal method to actually deliver the whisper via TTS
+    private func deliverWhisper(_ message: String) {
         let utterance = AVSpeechUtterance(string: message)
         utterance.rate = 0.45
         utterance.volume = 0.9
