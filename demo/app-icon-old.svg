@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- iOS app icon background gradient -->
+    <radialGradient id="iconBg" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#F8F8FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E6E6FA;stop-opacity:1" />
+    </radialGradient>
+
+    <!-- Soul seed gradient for icon -->
+    <radialGradient id="iconSoul" cx="50%" cy="50%" r="45%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#F8F8FF;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#E6E6FA;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#E0F4FF;stop-opacity:0.4" />
+    </radialGradient>
+
+    <!-- Sparkle gradient -->
+    <radialGradient id="sparkleGrad">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#E8E8F0;stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Glow effect -->
+    <filter id="iconGlow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="url(#iconBg)" rx="226" />
+
+  <!-- Subtle ambient glow -->
+  <circle cx="512" cy="450" r="400" fill="#FFFFFF" opacity="0.15" filter="url(#iconGlow)" />
+
+  <!-- Main soul seed -->
+  <circle cx="512" cy="480" r="280" fill="url(#iconSoul)" filter="url(#iconGlow)" />
+
+  <!-- Inner shimmer -->
+  <circle cx="512" cy="480" r="250" fill="#FFFFFF" opacity="0.2" />
+
+  <!-- Highlights (membrane effect) -->
+  <ellipse cx="420" cy="420" rx="120" ry="180" fill="#FFFFFF" opacity="0.25" transform="rotate(-20 420 420)" />
+  <ellipse cx="600" cy="450" rx="90" ry="150" fill="#FFFFFF" opacity="0.18" transform="rotate(18 600 450)" />
+
+  <!-- Delicate sparkles -->
+  <circle cx="350" cy="350" r="18" fill="url(#sparkleGrad)" opacity="0.8" />
+  <circle cx="680" cy="380" r="14" fill="url(#sparkleGrad)" opacity="0.7" />
+  <circle cx="420" cy="680" r="22" fill="url(#sparkleGrad)" opacity="0.75" />
+  <circle cx="620" cy="640" r="16" fill="url(#sparkleGrad)" opacity="0.65" />
+  <circle cx="280" cy="500" r="12" fill="url(#sparkleGrad)" opacity="0.7" />
+  <circle cx="740" cy="520" r="20" fill="url(#sparkleGrad)" opacity="0.8" />
+
+  <!-- Edge refinement -->
+  <circle cx="512" cy="480" r="278" fill="none" stroke="#E6E6FA" stroke-width="3" opacity="0.4" />
+</svg>

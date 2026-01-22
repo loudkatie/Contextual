@@ -18,29 +18,26 @@
         }
 
         :root {
-            /* Soul Seed Color Palette */
             --pure-white: #FFFFFF;
             --silver-shimmer: #E8E8F0;
             --pale-lavender: #E6E6FA;
             --powder-periwinkle: #E0F4FF;
             --ghost-white: #F8F8FF;
-
-            /* Typography */
-            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            --pink-whisper: #FFE8F5;
+            --blue-dream: #E0F0FF;
         }
 
         body {
-            font-family: var(--font-primary);
-            background: var(--pure-white);
-            color: var(--silver-shimmer);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
             overflow: hidden;
             height: 100vh;
             height: 100dvh;
             width: 100vw;
             position: fixed;
+            background: #000;
         }
 
-        /* Scene Container */
+        /* Dreamy Nebula Background */
         .scene {
             position: absolute;
             inset: 0;
@@ -49,10 +46,14 @@
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transition: opacity 1.2s ease-in-out;
-            background: linear-gradient(135deg, var(--pure-white) 0%, var(--ghost-white) 50%, var(--pure-white) 100%);
+            transition: opacity 1.5s ease-in-out;
+            background:
+                radial-gradient(ellipse at 20% 30%, rgba(230, 230, 250, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(255, 232, 245, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(224, 240, 255, 0.1) 0%, transparent 60%),
+                linear-gradient(180deg, #FFFFFF 0%, #F8F8FF 50%, #FEFAFF 100%);
             background-size: 200% 200%;
-            animation: gradientShift 12s ease-in-out infinite;
+            animation: atmosphereShift 20s ease-in-out infinite;
         }
 
         .scene.active {
@@ -60,33 +61,135 @@
             z-index: 10;
         }
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        @keyframes atmosphereShift {
+            0%, 100% {
+                background-position: 0% 50%, 100% 50%, 50% 50%;
+            }
+            50% {
+                background-position: 100% 50%, 0% 50%, 70% 70%;
+            }
         }
 
-        /* Soul Seed Component */
-        .soul-seed {
+        /* Photographic Soul Seed */
+        .soul-seed-container {
             position: relative;
-            width: 300px;
-            height: 300px;
-            animation: breathe 3s ease-in-out infinite;
+            width: 320px;
+            height: 320px;
+            filter: drop-shadow(0 0 60px rgba(230, 230, 250, 0.6))
+                    drop-shadow(0 0 120px rgba(224, 240, 255, 0.4));
         }
 
-        .soul-seed.large {
-            width: 400px;
-            height: 400px;
+        .soul-seed-container.large {
+            width: 420px;
+            height: 420px;
         }
 
-        .soul-seed.small {
+        .soul-seed-container.small {
             width: 200px;
             height: 200px;
         }
 
-        .soul-seed img {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 0 40px rgba(230, 230, 250, 0.4));
+        /* Multiple layered soul seed for depth */
+        .soul-seed {
+            position: absolute;
+            inset: 0;
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        /* Outer glow layer */
+        .soul-layer-glow {
+            position: absolute;
+            inset: -20%;
+            background: radial-gradient(circle,
+                rgba(255, 255, 255, 0.4) 0%,
+                rgba(248, 248, 255, 0.3) 20%,
+                rgba(230, 230, 250, 0.15) 40%,
+                transparent 70%
+            );
+            filter: blur(30px);
+            opacity: 0.8;
+        }
+
+        /* Main orb with iridescence */
+        .soul-layer-orb {
+            position: absolute;
+            inset: 10%;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(224, 240, 255, 0.3) 0%, transparent 60%),
+                radial-gradient(circle,
+                    #FFFFFF 0%,
+                    #F8F8FF 30%,
+                    rgba(230, 230, 250, 0.8) 60%,
+                    rgba(224, 240, 255, 0.6) 80%,
+                    transparent 100%
+                );
+            border-radius: 50%;
+            box-shadow:
+                inset 0 0 60px rgba(255, 255, 255, 0.8),
+                inset 20px 20px 60px rgba(230, 230, 250, 0.4),
+                inset -20px -20px 60px rgba(224, 240, 255, 0.3),
+                0 0 80px rgba(255, 255, 255, 0.5),
+                0 0 120px rgba(230, 230, 250, 0.3);
+        }
+
+        /* Shimmer overlay */
+        .soul-layer-shimmer {
+            position: absolute;
+            inset: 15%;
+            background:
+                linear-gradient(135deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.6) 25%,
+                    transparent 50%,
+                    rgba(224, 240, 255, 0.4) 75%,
+                    transparent 100%
+                );
+            border-radius: 50%;
+            opacity: 0.6;
+            mix-blend-mode: overlay;
+            animation: shimmerRotate 8s linear infinite;
+        }
+
+        @keyframes shimmerRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Membrane highlights */
+        .soul-layer-membrane {
+            position: absolute;
+            inset: 20%;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .membrane-highlight {
+            position: absolute;
+            background: radial-gradient(ellipse,
+                rgba(255, 255, 255, 0.7) 0%,
+                rgba(255, 255, 255, 0.3) 40%,
+                transparent 70%
+            );
+            border-radius: 50%;
+            filter: blur(8px);
+        }
+
+        .membrane-highlight:nth-child(1) {
+            top: 10%;
+            left: 15%;
+            width: 60%;
+            height: 80%;
+            transform: rotate(-25deg);
+        }
+
+        .membrane-highlight:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            width: 45%;
+            height: 60%;
+            transform: rotate(15deg);
+            opacity: 0.6;
         }
 
         @keyframes breathe {
@@ -94,72 +197,61 @@
             50% { transform: scale(1.03); }
         }
 
-        /* Sparkle System */
-        .sparkles {
+        /* Photographic Sparkle Canvas */
+        .sparkle-canvas {
             position: absolute;
-            inset: 0;
+            inset: -100%;
             pointer-events: none;
+            z-index: 100;
         }
 
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: radial-gradient(circle, var(--pure-white) 0%, var(--silver-shimmer) 50%, transparent 100%);
-            border-radius: 50%;
-            opacity: 0;
-            animation: sparkleRise 4s ease-in-out infinite;
-        }
-
-        @keyframes sparkleRise {
-            0% {
-                opacity: 0;
-                transform: translateY(0) scale(1);
-            }
-            20% {
-                opacity: 0.8;
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-200px) translateX(var(--drift)) scale(0.5);
-            }
-        }
-
-        /* Typography Styles */
+        /* Typography - Ethereal */
         .whisper-text {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 300;
-            letter-spacing: 1.2px;
-            line-height: 1.8;
+            letter-spacing: 1.5px;
+            line-height: 1.9;
             text-align: center;
-            color: rgba(232, 232, 240, 0.9);
+            background: linear-gradient(135deg,
+                rgba(200, 200, 220, 0.95) 0%,
+                rgba(180, 180, 200, 0.9) 50%,
+                rgba(200, 200, 220, 0.95) 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             max-width: 85%;
-            margin: 40px auto;
+            margin: 50px auto;
             opacity: 0;
-            animation: fadeInText 1.5s ease-in forwards;
+            text-shadow: 0 2px 20px rgba(230, 230, 250, 0.3);
+            animation: fadeInText 1.8s ease-in forwards;
         }
 
         .whisper-text.delay-1 { animation-delay: 0.5s; }
-        .whisper-text.delay-2 { animation-delay: 1.5s; }
-        .whisper-text.delay-3 { animation-delay: 2.5s; }
+        .whisper-text.delay-2 { animation-delay: 2s; }
+        .whisper-text.delay-3 { animation-delay: 3.5s; }
 
         @keyframes fadeInText {
             to { opacity: 1; }
         }
 
-        /* Permission Request UI */
+        /* Permission Card - Glass Morphism */
         .permission-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            border-radius: 28px;
-            padding: 40px 32px;
-            max-width: 340px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border-radius: 32px;
+            padding: 48px 36px;
+            max-width: 360px;
             margin: 20px;
-            box-shadow: 0 8px 32px rgba(230, 230, 250, 0.15);
-            border: 1px solid rgba(232, 232, 240, 0.3);
+            box-shadow:
+                0 8px 32px rgba(230, 230, 250, 0.2),
+                0 2px 8px rgba(255, 255, 255, 0.8),
+                inset 0 1px 1px rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             opacity: 0;
-            transform: translateY(20px);
-            animation: slideUp 0.8s ease-out forwards;
+            transform: translateY(30px);
+            animation: slideUp 1s ease-out forwards;
         }
 
         @keyframes slideUp {
@@ -170,119 +262,222 @@
         }
 
         .permission-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 300;
-            letter-spacing: 0.8px;
-            color: rgba(100, 100, 120, 0.9);
-            margin-bottom: 12px;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg,
+                rgba(120, 120, 160, 0.95) 0%,
+                rgba(100, 100, 140, 0.9) 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
             text-align: center;
+            line-height: 1.5;
         }
 
         .permission-description {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 200;
-            letter-spacing: 0.4px;
-            line-height: 1.6;
-            color: rgba(140, 140, 160, 0.8);
+            letter-spacing: 0.5px;
+            line-height: 1.7;
+            color: rgba(140, 140, 180, 0.85);
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
 
         .permission-button {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, rgba(230, 230, 250, 0.3), rgba(224, 244, 255, 0.25));
-            border: 1px solid rgba(232, 232, 240, 0.4);
-            border-radius: 16px;
-            font-family: var(--font-primary);
-            font-size: 16px;
+            padding: 18px;
+            background: linear-gradient(135deg,
+                rgba(240, 240, 255, 0.6),
+                rgba(230, 240, 255, 0.5)
+            );
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 18px;
+            font-family: 'Inter', sans-serif;
+            font-size: 17px;
             font-weight: 300;
-            letter-spacing: 0.6px;
-            color: rgba(100, 100, 120, 0.95);
+            letter-spacing: 0.8px;
+            color: rgba(100, 100, 140, 0.95);
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow:
+                0 4px 16px rgba(230, 230, 250, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.8);
         }
 
         .permission-button:active {
             transform: scale(0.98);
-            background: linear-gradient(135deg, rgba(230, 230, 250, 0.5), rgba(224, 244, 255, 0.4));
+            box-shadow:
+                0 2px 8px rgba(230, 230, 250, 0.4),
+                inset 0 1px 1px rgba(255, 255, 255, 0.9);
         }
 
-        /* Watch UI Mockup */
+        /* Watch Mockup - Premium */
         .watch-mockup {
-            width: 280px;
-            height: 340px;
-            background: rgba(20, 20, 25, 0.95);
-            border-radius: 44px;
-            padding: 20px;
+            width: 300px;
+            height: 360px;
+            background: linear-gradient(135deg, #1a1a1f 0%, #2a2a30 100%);
+            border-radius: 50px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
             position: relative;
         }
 
         .watch-screen {
             width: 100%;
             height: 100%;
-            background: var(--pure-white);
-            border-radius: 32px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #F8F8FF 100%);
+            border-radius: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding: 32px 20px 24px;
+            padding: 40px 24px 28px;
+            box-shadow:
+                inset 0 2px 8px rgba(230, 230, 250, 0.2);
         }
 
         .watch-soul-seed {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
         }
 
         .watch-message {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 300;
-            letter-spacing: 0.5px;
-            line-height: 1.6;
+            letter-spacing: 0.6px;
+            line-height: 1.7;
             text-align: center;
-            color: rgba(100, 100, 120, 0.9);
+            color: rgba(100, 100, 140, 0.9);
             flex-grow: 1;
             display: flex;
             align-items: center;
-            padding: 0 8px;
+            padding: 0 12px;
         }
 
         .watch-buttons {
             display: flex;
-            gap: 12px;
+            gap: 14px;
             width: 100%;
         }
 
         .watch-button {
             flex: 1;
-            padding: 12px;
-            border-radius: 12px;
-            font-family: var(--font-primary);
-            font-size: 14px;
+            padding: 14px;
+            border-radius: 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
             font-weight: 300;
-            letter-spacing: 0.4px;
+            letter-spacing: 0.5px;
             border: none;
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
         .watch-button.yes {
-            background: linear-gradient(135deg, rgba(230, 230, 250, 0.5), rgba(224, 244, 255, 0.4));
-            color: rgba(100, 100, 120, 0.95);
+            background: linear-gradient(135deg,
+                rgba(240, 240, 255, 0.7),
+                rgba(230, 240, 255, 0.6)
+            );
+            color: rgba(100, 100, 140, 0.95);
+            box-shadow:
+                0 2px 8px rgba(230, 230, 250, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.8);
         }
 
         .watch-button.later {
-            background: rgba(200, 200, 210, 0.2);
-            color: rgba(120, 120, 140, 0.8);
+            background: rgba(220, 220, 230, 0.3);
+            color: rgba(120, 120, 160, 0.8);
         }
 
-        /* iPhone Home Screen Mockup */
+        /* Control Bar - Elegant */
+        .control-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            padding: 24px 20px;
+            padding-bottom: max(24px, env(safe-area-inset-bottom));
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            border-top: 1px solid rgba(230, 230, 250, 0.4);
+            box-shadow: 0 -4px 24px rgba(230, 230, 250, 0.15);
+            z-index: 100;
+        }
+
+        .control-button {
+            padding: 14px 28px;
+            background: linear-gradient(135deg,
+                rgba(240, 240, 255, 0.5),
+                rgba(230, 240, 255, 0.4)
+            );
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 300;
+            letter-spacing: 0.6px;
+            color: rgba(100, 100, 140, 0.9);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(230, 230, 250, 0.2);
+        }
+
+        .control-button:active {
+            transform: scale(0.96);
+        }
+
+        /* Point of Light */
+        .point-of-light {
+            width: 12px;
+            height: 12px;
+            background: #FFFFFF;
+            border-radius: 50%;
+            box-shadow:
+                0 0 60px rgba(255, 255, 255, 1),
+                0 0 120px rgba(230, 230, 250, 0.8),
+                0 0 180px rgba(224, 240, 255, 0.6);
+            opacity: 0;
+            animation: emerge 2.5s ease-out forwards;
+        }
+
+        @keyframes emerge {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            40% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                transform: scale(35);
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Home Screen */
         .home-screen {
             width: 100%;
             max-width: 400px;
@@ -291,7 +486,7 @@
             border-radius: 48px;
             padding: 60px 24px 24px;
             position: relative;
-            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 24px 96px rgba(0, 0, 0, 0.5);
         }
 
         .home-notch {
@@ -308,7 +503,7 @@
         .app-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 24px;
             margin-top: 40px;
         }
 
@@ -317,7 +512,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             cursor: pointer;
         }
 
@@ -326,6 +521,7 @@
             aspect-ratio: 1;
             border-radius: 22%;
             overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
         }
 
         .app-icon-image img {
@@ -339,78 +535,7 @@
             font-weight: 300;
             color: rgba(255, 255, 255, 0.9);
             text-align: center;
-            letter-spacing: 0.2px;
-        }
-
-        /* Control Bar */
-        .control-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(248, 248, 255, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            border-top: 1px solid rgba(230, 230, 250, 0.3);
-            z-index: 100;
-        }
-
-        .control-button {
-            padding: 12px 24px;
-            background: linear-gradient(135deg, rgba(230, 230, 250, 0.4), rgba(224, 244, 255, 0.3));
-            border: 1px solid rgba(232, 232, 240, 0.5);
-            border-radius: 12px;
-            font-family: var(--font-primary);
-            font-size: 14px;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-            color: rgba(100, 100, 120, 0.9);
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .control-button:active {
-            transform: scale(0.96);
-        }
-
-        /* Point of Light (Awakening) */
-        .point-of-light {
-            width: 8px;
-            height: 8px;
-            background: var(--pure-white);
-            border-radius: 50%;
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.9),
-                        0 0 80px rgba(230, 230, 250, 0.6);
-            opacity: 0;
-            animation: emerge 2s ease-out forwards;
-        }
-
-        @keyframes emerge {
-            0% {
-                opacity: 0;
-                transform: scale(0);
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 1;
-                transform: scale(30);
-            }
-        }
-
-        /* Utility */
-        .hidden {
-            display: none !important;
-        }
-
-        .center {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            letter-spacing: 0.3px;
         }
     </style>
 </head>
@@ -420,13 +545,11 @@
         <div class="home-screen">
             <div class="home-notch"></div>
             <div class="app-grid">
-                <!-- First row - placeholder apps -->
                 <div class="app-icon-slot"></div>
                 <div class="app-icon-slot"></div>
                 <div class="app-icon-slot"></div>
                 <div class="app-icon-slot"></div>
 
-                <!-- Second row with Contextual -->
                 <div class="app-icon-slot"></div>
                 <div class="app-icon-slot" onclick="startDemo()">
                     <div class="app-icon-image">
@@ -447,18 +570,34 @@
 
     <!-- Scene 2: The Awakening - Soul Seed Emerges -->
     <div id="scene-awakening-2" class="scene">
-        <div class="soul-seed large">
-            <img src="soul-seed.svg" alt="Soul Seed">
-            <div class="sparkles" id="sparkles-1"></div>
+        <div class="soul-seed-container large">
+            <div class="soul-seed">
+                <div class="soul-layer-glow"></div>
+                <div class="soul-layer-orb"></div>
+                <div class="soul-layer-shimmer"></div>
+                <div class="soul-layer-membrane">
+                    <div class="membrane-highlight"></div>
+                    <div class="membrane-highlight"></div>
+                </div>
+            </div>
+            <canvas class="sparkle-canvas" id="sparkles-1"></canvas>
         </div>
         <div class="whisper-text delay-1">I'm here.</div>
     </div>
 
     <!-- Scene 3: Introduction -->
     <div id="scene-intro" class="scene">
-        <div class="soul-seed">
-            <img src="soul-seed.svg" alt="Soul Seed">
-            <div class="sparkles" id="sparkles-2"></div>
+        <div class="soul-seed-container">
+            <div class="soul-seed">
+                <div class="soul-layer-glow"></div>
+                <div class="soul-layer-orb"></div>
+                <div class="soul-layer-shimmer"></div>
+                <div class="soul-layer-membrane">
+                    <div class="membrane-highlight"></div>
+                    <div class="membrane-highlight"></div>
+                </div>
+            </div>
+            <canvas class="sparkle-canvas" id="sparkles-2"></canvas>
         </div>
         <div class="whisper-text delay-1">
             I sense the hidden layers<br>around you.
@@ -473,9 +612,17 @@
 
     <!-- Scene 4: Permission - Location -->
     <div id="scene-permission-location" class="scene">
-        <div class="soul-seed small">
-            <img src="soul-seed.svg" alt="Soul Seed">
-            <div class="sparkles" id="sparkles-3"></div>
+        <div class="soul-seed-container small">
+            <div class="soul-seed">
+                <div class="soul-layer-glow"></div>
+                <div class="soul-layer-orb"></div>
+                <div class="soul-layer-shimmer"></div>
+                <div class="soul-layer-membrane">
+                    <div class="membrane-highlight"></div>
+                    <div class="membrane-highlight"></div>
+                </div>
+            </div>
+            <canvas class="sparkle-canvas" id="sparkles-3"></canvas>
         </div>
         <div class="permission-card" style="animation-delay: 0.5s">
             <div class="permission-title">May I walk with you?<br>Everywhere you go?</div>
@@ -486,9 +633,17 @@
 
     <!-- Scene 5: Permission - Identity -->
     <div id="scene-permission-identity" class="scene">
-        <div class="soul-seed small">
-            <img src="soul-seed.svg" alt="Soul Seed">
-            <div class="sparkles" id="sparkles-4"></div>
+        <div class="soul-seed-container small">
+            <div class="soul-seed">
+                <div class="soul-layer-glow"></div>
+                <div class="soul-layer-orb"></div>
+                <div class="soul-layer-shimmer"></div>
+                <div class="soul-layer-membrane">
+                    <div class="membrane-highlight"></div>
+                    <div class="membrane-highlight"></div>
+                </div>
+            </div>
+            <canvas class="sparkle-canvas" id="sparkles-4"></canvas>
         </div>
         <div class="permission-card" style="animation-delay: 0.5s">
             <div class="permission-title">May I know who you are?</div>
@@ -499,9 +654,17 @@
 
     <!-- Scene 6: Permission - Notifications -->
     <div id="scene-permission-notifications" class="scene">
-        <div class="soul-seed small">
-            <img src="soul-seed.svg" alt="Soul Seed">
-            <div class="sparkles" id="sparkles-5"></div>
+        <div class="soul-seed-container small">
+            <div class="soul-seed">
+                <div class="soul-layer-glow"></div>
+                <div class="soul-layer-orb"></div>
+                <div class="soul-layer-shimmer"></div>
+                <div class="soul-layer-membrane">
+                    <div class="membrane-highlight"></div>
+                    <div class="membrane-highlight"></div>
+                </div>
+            </div>
+            <canvas class="sparkle-canvas" id="sparkles-5"></canvas>
         </div>
         <div class="permission-card" style="animation-delay: 0.5s">
             <div class="permission-title">May I tap your wrist<br>when I have something for you?</div>
@@ -512,9 +675,17 @@
 
     <!-- Scene 7: The Promise -->
     <div id="scene-promise" class="scene">
-        <div class="soul-seed">
-            <img src="soul-seed.svg" alt="Soul Seed">
-            <div class="sparkles" id="sparkles-6"></div>
+        <div class="soul-seed-container">
+            <div class="soul-seed">
+                <div class="soul-layer-glow"></div>
+                <div class="soul-layer-orb"></div>
+                <div class="soul-layer-shimmer"></div>
+                <div class="soul-layer-membrane">
+                    <div class="membrane-highlight"></div>
+                    <div class="membrane-highlight"></div>
+                </div>
+            </div>
+            <canvas class="sparkle-canvas" id="sparkles-6"></canvas>
         </div>
         <div class="whisper-text delay-1">
             Thank you.<br>I can see you now.
@@ -529,9 +700,17 @@
 
     <!-- Scene 8: Passive State -->
     <div id="scene-passive" class="scene">
-        <div class="soul-seed large">
-            <img src="soul-seed.svg" alt="Soul Seed">
-            <div class="sparkles" id="sparkles-7"></div>
+        <div class="soul-seed-container large">
+            <div class="soul-seed">
+                <div class="soul-layer-glow"></div>
+                <div class="soul-layer-orb"></div>
+                <div class="soul-layer-shimmer"></div>
+                <div class="soul-layer-membrane">
+                    <div class="membrane-highlight"></div>
+                    <div class="membrane-highlight"></div>
+                </div>
+            </div>
+            <canvas class="sparkle-canvas" id="sparkles-7"></canvas>
         </div>
     </div>
 
@@ -539,8 +718,12 @@
     <div id="scene-watch" class="scene center">
         <div class="watch-mockup">
             <div class="watch-screen">
-                <div class="soul-seed watch-soul-seed">
-                    <img src="soul-seed.svg" alt="Soul Seed">
+                <div class="soul-seed-container watch-soul-seed">
+                    <div class="soul-seed">
+                        <div class="soul-layer-glow"></div>
+                        <div class="soul-layer-orb"></div>
+                        <div class="soul-layer-shimmer"></div>
+                    </div>
                 </div>
                 <div class="watch-message">
                     Katie, I found something<br>for you. Now?
@@ -553,11 +736,19 @@
         </div>
     </div>
 
-    <!-- Scene 10: The Whisper (Kilroy Memory) -->
+    <!-- Scene 10: The Whisper -->
     <div id="scene-whisper" class="scene">
-        <div class="soul-seed large">
-            <img src="soul-seed.svg" alt="Soul Seed">
-            <div class="sparkles" id="sparkles-8"></div>
+        <div class="soul-seed-container large">
+            <div class="soul-seed">
+                <div class="soul-layer-glow"></div>
+                <div class="soul-layer-orb"></div>
+                <div class="soul-layer-shimmer"></div>
+                <div class="soul-layer-membrane">
+                    <div class="membrane-highlight"></div>
+                    <div class="membrane-highlight"></div>
+                </div>
+            </div>
+            <canvas class="sparkle-canvas" id="sparkles-8"></canvas>
         </div>
         <div class="whisper-text delay-1">
             You walked this path last spring.
@@ -572,9 +763,17 @@
 
     <!-- Scene 11: Soul Speed Permission -->
     <div id="scene-soul-speed" class="scene">
-        <div class="soul-seed small">
-            <img src="soul-seed.svg" alt="Soul Seed">
-            <div class="sparkles" id="sparkles-9"></div>
+        <div class="soul-seed-container small">
+            <div class="soul-seed">
+                <div class="soul-layer-glow"></div>
+                <div class="soul-layer-orb"></div>
+                <div class="soul-layer-shimmer"></div>
+                <div class="soul-layer-membrane">
+                    <div class="membrane-highlight"></div>
+                    <div class="membrane-highlight"></div>
+                </div>
+            </div>
+            <canvas class="sparkle-canvas" id="sparkles-9"></canvas>
         </div>
         <div class="permission-card" style="animation-delay: 0.5s">
             <div class="permission-title">Do you have a moment?</div>
@@ -585,9 +784,17 @@
 
     <!-- Scene 12: End -->
     <div id="scene-end" class="scene">
-        <div class="soul-seed large">
-            <img src="soul-seed.svg" alt="Soul Seed">
-            <div class="sparkles" id="sparkles-10"></div>
+        <div class="soul-seed-container large">
+            <div class="soul-seed">
+                <div class="soul-layer-glow"></div>
+                <div class="soul-layer-orb"></div>
+                <div class="soul-layer-shimmer"></div>
+                <div class="soul-layer-membrane">
+                    <div class="membrane-highlight"></div>
+                    <div class="membrane-highlight"></div>
+                </div>
+            </div>
+            <canvas class="sparkle-canvas" id="sparkles-10"></canvas>
         </div>
         <div class="whisper-text delay-1">
             ✨ 🌬️
@@ -601,6 +808,121 @@
     </div>
 
     <script>
+        // Photographic Sparkle System
+        class SparkleParticle {
+            constructor(canvas) {
+                this.reset(canvas);
+                this.age = Math.random() * this.lifetime;
+            }
+
+            reset(canvas) {
+                const angle = Math.random() * Math.PI * 2;
+                const radius = 100 + Math.random() * 100;
+                this.x = canvas.width / 2 + Math.cos(angle) * radius;
+                this.y = canvas.height / 2 + Math.sin(angle) * radius;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = -0.3 - Math.random() * 0.8;
+                this.size = Math.random() * 3 + 1;
+                this.lifetime = 3000 + Math.random() * 2000;
+                this.age = 0;
+                this.shimmer = Math.random() * Math.PI * 2;
+                this.shimmerSpeed = 0.02 + Math.random() * 0.04;
+                this.hue = Math.random() * 60 + 200; // Blue-ish to lavender
+            }
+
+            update(deltaTime, canvas) {
+                this.age += deltaTime * 16.67;
+                if (this.age >= this.lifetime) {
+                    this.reset(canvas);
+                }
+
+                this.x += this.vx;
+                this.y += this.vy;
+                this.shimmer += this.shimmerSpeed;
+            }
+
+            draw(ctx) {
+                const life = 1 - (this.age / this.lifetime);
+                const opacity = Math.sin(this.shimmer) * 0.3 + 0.6;
+                const alpha = life * opacity;
+
+                // Bokeh glow
+                const gradient = ctx.createRadialGradient(
+                    this.x, this.y, 0,
+                    this.x, this.y, this.size * 4
+                );
+                gradient.addColorStop(0, `hsla(${this.hue}, 70%, 95%, ${alpha * 0.8})`);
+                gradient.addColorStop(0.5, `hsla(${this.hue}, 60%, 85%, ${alpha * 0.4})`);
+                gradient.addColorStop(1, `hsla(${this.hue}, 50%, 75%, 0)`);
+
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Bright core
+                ctx.fillStyle = `hsla(0, 0%, 100%, ${alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        class SparkleSystem {
+            constructor(canvasId, particleCount = 30) {
+                this.canvas = document.getElementById(canvasId);
+                if (!this.canvas) return;
+
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.particleCount = particleCount;
+                this.lastTime = Date.now();
+
+                this.resize();
+                this.init();
+                this.animate();
+
+                window.addEventListener('resize', () => this.resize());
+            }
+
+            resize() {
+                const container = this.canvas.parentElement;
+                this.canvas.width = container.offsetWidth * 2;
+                this.canvas.height = container.offsetHeight * 2;
+                this.canvas.style.width = container.offsetWidth + 'px';
+                this.canvas.style.height = container.offsetHeight + 'px';
+            }
+
+            init() {
+                for (let i = 0; i < this.particleCount; i++) {
+                    this.particles.push(new SparkleParticle(this.canvas));
+                }
+            }
+
+            animate() {
+                const now = Date.now();
+                const deltaTime = (now - this.lastTime) / 16.67;
+                this.lastTime = now;
+
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                this.particles.forEach(particle => {
+                    particle.update(deltaTime, this.canvas);
+                    particle.draw(this.ctx);
+                });
+
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Initialize sparkle systems
+        const sparkleSystems = [];
+        for (let i = 1; i <= 10; i++) {
+            setTimeout(() => {
+                sparkleSystems.push(new SparkleSystem(`sparkles-${i}`, 25));
+            }, i * 100);
+        }
+
         // Scene management
         let currentScene = 0;
         const scenes = [
@@ -619,7 +941,6 @@
             'scene-end'
         ];
 
-        // Whisper scripts
         const whispers = {
             'awakening-breath': "I'm here.",
             'intro-1': "I sense the hidden layers around you.",
@@ -633,7 +954,6 @@
             'whisper-3': "Want to see it again?"
         };
 
-        // Voice synthesis setup
         function speak(text, delay = 0) {
             setTimeout(() => {
                 if ('speechSynthesis' in window) {
@@ -642,7 +962,6 @@
                     utterance.pitch = 1.1;
                     utterance.volume = 0.75;
 
-                    // Try to use a soft female voice
                     const voices = speechSynthesis.getVoices();
                     const preferredVoices = ['Samantha', 'Zoe', 'Fiona', 'Karen', 'Moira'];
                     for (let voiceName of preferredVoices) {
@@ -658,36 +977,6 @@
             }, delay);
         }
 
-        // Sparkle generation
-        function generateSparkles(containerId, count = 8) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-
-            container.innerHTML = '';
-            for (let i = 0; i < count; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-
-                const angle = (Math.PI * 2 * i) / count;
-                const radius = 120 + Math.random() * 60;
-                const x = Math.cos(angle) * radius;
-                const y = Math.sin(angle) * radius;
-
-                sparkle.style.left = `calc(50% + ${x}px)`;
-                sparkle.style.top = `calc(50% + ${y}px)`;
-                sparkle.style.setProperty('--drift', `${(Math.random() - 0.5) * 100}px`);
-                sparkle.style.animationDelay = `${Math.random() * 4}s`;
-
-                container.appendChild(sparkle);
-            }
-        }
-
-        // Initialize all sparkles
-        for (let i = 1; i <= 10; i++) {
-            generateSparkles(`sparkles-${i}`);
-        }
-
-        // Scene transitions
         function showScene(index) {
             scenes.forEach((sceneId, i) => {
                 const scene = document.getElementById(sceneId);
@@ -717,55 +1006,46 @@
 
         function grantPermission(type) {
             nextScene();
-            if (type === 'location' || type === 'identity' || type === 'notifications') {
-                // Visual feedback - sparkles swirl faster
-            }
         }
 
         function acceptWhisper() {
             nextScene();
         }
 
-        // Scene-specific behaviors
         function onSceneEnter(sceneId) {
             switch(sceneId) {
                 case 'scene-awakening-1':
-                    setTimeout(() => nextScene(), 3000);
+                    setTimeout(() => nextScene(), 3500);
                     break;
                 case 'scene-awakening-2':
-                    speak(whispers['awakening-breath'], 1000);
-                    setTimeout(() => nextScene(), 5000);
+                    speak(whispers['awakening-breath'], 1200);
+                    setTimeout(() => nextScene(), 5500);
                     break;
                 case 'scene-intro':
                     speak(whispers['intro-1'], 1000);
-                    speak(whispers['intro-2'], 4000);
-                    speak(whispers['intro-3'], 8000);
+                    speak(whispers['intro-2'], 4500);
+                    speak(whispers['intro-3'], 9000);
                     break;
                 case 'scene-promise':
                     speak(whispers['promise-1'], 1000);
-                    speak(whispers['promise-2'], 4000);
-                    speak(whispers['promise-3'], 8000);
-                    setTimeout(() => nextScene(), 12000);
+                    speak(whispers['promise-2'], 4500);
+                    speak(whispers['promise-3'], 9000);
+                    setTimeout(() => nextScene(), 13000);
                     break;
                 case 'scene-passive':
-                    setTimeout(() => nextScene(), 4000);
+                    setTimeout(() => nextScene(), 4500);
                     break;
                 case 'scene-whisper':
                     speak(whispers['whisper-1'], 1000);
-                    speak(whispers['whisper-2'], 4000);
-                    speak(whispers['whisper-3'], 8000);
-                    setTimeout(() => nextScene(), 12000);
-                    break;
-                case 'scene-end':
-                    // Demo complete
+                    speak(whispers['whisper-2'], 4500);
+                    speak(whispers['whisper-3'], 9000);
+                    setTimeout(() => nextScene(), 13000);
                     break;
             }
         }
 
-        // Initialize
         showScene(0);
 
-        // Load voices (Safari requirement)
         if ('speechSynthesis' in window) {
             speechSynthesis.onvoiceschanged = () => {
                 speechSynthesis.getVoices();

@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <title>Contextual — Soul Seed Demo</title>
+    <link rel="apple-touch-icon" href="app-icon.svg">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            /* Soul Seed Color Palette */
+            --pure-white: #FFFFFF;
+            --silver-shimmer: #E8E8F0;
+            --pale-lavender: #E6E6FA;
+            --powder-periwinkle: #E0F4FF;
+            --ghost-white: #F8F8FF;
+
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--pure-white);
+            color: var(--silver-shimmer);
+            overflow: hidden;
+            height: 100vh;
+            height: 100dvh;
+            width: 100vw;
+            position: fixed;
+        }
+
+        /* Scene Container */
+        .scene {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            background: linear-gradient(135deg, var(--pure-white) 0%, var(--ghost-white) 50%, var(--pure-white) 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 12s ease-in-out infinite;
+        }
+
+        .scene.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Soul Seed Component */
+        .soul-seed {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        .soul-seed.large {
+            width: 400px;
+            height: 400px;
+        }
+
+        .soul-seed.small {
+            width: 200px;
+            height: 200px;
+        }
+
+        .soul-seed img {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 40px rgba(230, 230, 250, 0.4));
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        /* Sparkle System */
+        .sparkles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, var(--pure-white) 0%, var(--silver-shimmer) 50%, transparent 100%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkleRise 4s ease-in-out infinite;
+        }
+
+        @keyframes sparkleRise {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(1);
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) translateX(var(--drift)) scale(0.5);
+            }
+        }
+
+        /* Typography Styles */
+        .whisper-text {
+            font-size: 20px;
+            font-weight: 300;
+            letter-spacing: 1.2px;
+            line-height: 1.8;
+            text-align: center;
+            color: rgba(232, 232, 240, 0.9);
+            max-width: 85%;
+            margin: 40px auto;
+            opacity: 0;
+            animation: fadeInText 1.5s ease-in forwards;
+        }
+
+        .whisper-text.delay-1 { animation-delay: 0.5s; }
+        .whisper-text.delay-2 { animation-delay: 1.5s; }
+        .whisper-text.delay-3 { animation-delay: 2.5s; }
+
+        @keyframes fadeInText {
+            to { opacity: 1; }
+        }
+
+        /* Permission Request UI */
+        .permission-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 40px 32px;
+            max-width: 340px;
+            margin: 20px;
+            box-shadow: 0 8px 32px rgba(230, 230, 250, 0.15);
+            border: 1px solid rgba(232, 232, 240, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .permission-title {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 0.8px;
+            color: rgba(100, 100, 120, 0.9);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .permission-description {
+            font-size: 14px;
+            font-weight: 200;
+            letter-spacing: 0.4px;
+            line-height: 1.6;
+            color: rgba(140, 140, 160, 0.8);
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .permission-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, rgba(230, 230, 250, 0.3), rgba(224, 244, 255, 0.25));
+            border: 1px solid rgba(232, 232, 240, 0.4);
+            border-radius: 16px;
+            font-family: var(--font-primary);
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 0.6px;
+            color: rgba(100, 100, 120, 0.95);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .permission-button:active {
+            transform: scale(0.98);
+            background: linear-gradient(135deg, rgba(230, 230, 250, 0.5), rgba(224, 244, 255, 0.4));
+        }
+
+        /* Watch UI Mockup */
+        .watch-mockup {
+            width: 280px;
+            height: 340px;
+            background: rgba(20, 20, 25, 0.95);
+            border-radius: 44px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .watch-screen {
+            width: 100%;
+            height: 100%;
+            background: var(--pure-white);
+            border-radius: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 32px 20px 24px;
+        }
+
+        .watch-soul-seed {
+            width: 80px;
+            height: 80px;
+        }
+
+        .watch-message {
+            font-size: 15px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+            text-align: center;
+            color: rgba(100, 100, 120, 0.9);
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+        }
+
+        .watch-buttons {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .watch-button {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            font-family: var(--font-primary);
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 0.4px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .watch-button.yes {
+            background: linear-gradient(135deg, rgba(230, 230, 250, 0.5), rgba(224, 244, 255, 0.4));
+            color: rgba(100, 100, 120, 0.95);
+        }
+
+        .watch-button.later {
+            background: rgba(200, 200, 210, 0.2);
+            color: rgba(120, 120, 140, 0.8);
+        }
+
+        /* iPhone Home Screen Mockup */
+        .home-screen {
+            width: 100%;
+            max-width: 400px;
+            height: 80vh;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a25 100%);
+            border-radius: 48px;
+            padding: 60px 24px 24px;
+            position: relative;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4);
+        }
+
+        .home-notch {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 28px;
+            background: #000;
+            border-radius: 0 0 16px 16px;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .app-icon-slot {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .app-icon-image {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 22%;
+            overflow: hidden;
+        }
+
+        .app-icon-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .app-name {
+            font-size: 11px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            letter-spacing: 0.2px;
+        }
+
+        /* Control Bar */
+        .control-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(248, 248, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            border-top: 1px solid rgba(230, 230, 250, 0.3);
+            z-index: 100;
+        }
+
+        .control-button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, rgba(230, 230, 250, 0.4), rgba(224, 244, 255, 0.3));
+            border: 1px solid rgba(232, 232, 240, 0.5);
+            border-radius: 12px;
+            font-family: var(--font-primary);
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: rgba(100, 100, 120, 0.9);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .control-button:active {
+            transform: scale(0.96);
+        }
+
+        /* Point of Light (Awakening) */
+        .point-of-light {
+            width: 8px;
+            height: 8px;
+            background: var(--pure-white);
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.9),
+                        0 0 80px rgba(230, 230, 250, 0.6);
+            opacity: 0;
+            animation: emerge 2s ease-out forwards;
+        }
+
+        @keyframes emerge {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                transform: scale(30);
+            }
+        }
+
+        /* Utility */
+        .hidden {
+            display: none !important;
+        }
+
+        .center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Scene 0: Home Screen -->
+    <div id="scene-home" class="scene center">
+        <div class="home-screen">
+            <div class="home-notch"></div>
+            <div class="app-grid">
+                <!-- First row - placeholder apps -->
+                <div class="app-icon-slot"></div>
+                <div class="app-icon-slot"></div>
+                <div class="app-icon-slot"></div>
+                <div class="app-icon-slot"></div>
+
+                <!-- Second row with Contextual -->
+                <div class="app-icon-slot"></div>
+                <div class="app-icon-slot" onclick="startDemo()">
+                    <div class="app-icon-image">
+                        <img src="app-icon.svg" alt="Contextual">
+                    </div>
+                    <div class="app-name">Contextual</div>
+                </div>
+                <div class="app-icon-slot"></div>
+                <div class="app-icon-slot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scene 1: The Awakening - White Void -->
+    <div id="scene-awakening-1" class="scene">
+        <div id="point-of-light" class="point-of-light"></div>
+    </div>
+
+    <!-- Scene 2: The Awakening - Soul Seed Emerges -->
+    <div id="scene-awakening-2" class="scene">
+        <div class="soul-seed large">
+            <img src="soul-seed.svg" alt="Soul Seed">
+            <div class="sparkles" id="sparkles-1"></div>
+        </div>
+        <div class="whisper-text delay-1">I'm here.</div>
+    </div>
+
+    <!-- Scene 3: Introduction -->
+    <div id="scene-intro" class="scene">
+        <div class="soul-seed">
+            <img src="soul-seed.svg" alt="Soul Seed">
+            <div class="sparkles" id="sparkles-2"></div>
+        </div>
+        <div class="whisper-text delay-1">
+            I sense the hidden layers<br>around you.
+        </div>
+        <div class="whisper-text delay-2">
+            Memories left by others.<br>Moments only you would care about.
+        </div>
+        <div class="whisper-text delay-3">
+            But I need your eyes to see.
+        </div>
+    </div>
+
+    <!-- Scene 4: Permission - Location -->
+    <div id="scene-permission-location" class="scene">
+        <div class="soul-seed small">
+            <img src="soul-seed.svg" alt="Soul Seed">
+            <div class="sparkles" id="sparkles-3"></div>
+        </div>
+        <div class="permission-card" style="animation-delay: 0.5s">
+            <div class="permission-title">May I walk with you?<br>Everywhere you go?</div>
+            <div class="permission-description">I'll whisper when you're near something meant for you.</div>
+            <button class="permission-button" onclick="grantPermission('location')">Allow Location Always</button>
+        </div>
+    </div>
+
+    <!-- Scene 5: Permission - Identity -->
+    <div id="scene-permission-identity" class="scene">
+        <div class="soul-seed small">
+            <img src="soul-seed.svg" alt="Soul Seed">
+            <div class="sparkles" id="sparkles-4"></div>
+        </div>
+        <div class="permission-card" style="animation-delay: 0.5s">
+            <div class="permission-title">May I know who you are?</div>
+            <div class="permission-description">So I can remember what matters to you.</div>
+            <button class="permission-button" onclick="grantPermission('identity')">Sign in with Apple</button>
+        </div>
+    </div>
+
+    <!-- Scene 6: Permission - Notifications -->
+    <div id="scene-permission-notifications" class="scene">
+        <div class="soul-seed small">
+            <img src="soul-seed.svg" alt="Soul Seed">
+            <div class="sparkles" id="sparkles-5"></div>
+        </div>
+        <div class="permission-card" style="animation-delay: 0.5s">
+            <div class="permission-title">May I tap your wrist<br>when I have something for you?</div>
+            <div class="permission-description">I promise to be gentle.</div>
+            <button class="permission-button" onclick="grantPermission('notifications')">Allow Notifications</button>
+        </div>
+    </div>
+
+    <!-- Scene 7: The Promise -->
+    <div id="scene-promise" class="scene">
+        <div class="soul-seed">
+            <img src="soul-seed.svg" alt="Soul Seed">
+            <div class="sparkles" id="sparkles-6"></div>
+        </div>
+        <div class="whisper-text delay-1">
+            Thank you.<br>I can see you now.
+        </div>
+        <div class="whisper-text delay-2">
+            There's so much more I can offer.<br>But only when you're ready.
+        </div>
+        <div class="whisper-text delay-3">
+            I'll ask when you have time.
+        </div>
+    </div>
+
+    <!-- Scene 8: Passive State -->
+    <div id="scene-passive" class="scene">
+        <div class="soul-seed large">
+            <img src="soul-seed.svg" alt="Soul Seed">
+            <div class="sparkles" id="sparkles-7"></div>
+        </div>
+    </div>
+
+    <!-- Scene 9: Watch Whisper -->
+    <div id="scene-watch" class="scene center">
+        <div class="watch-mockup">
+            <div class="watch-screen">
+                <div class="soul-seed watch-soul-seed">
+                    <img src="soul-seed.svg" alt="Soul Seed">
+                </div>
+                <div class="watch-message">
+                    Katie, I found something<br>for you. Now?
+                </div>
+                <div class="watch-buttons">
+                    <button class="watch-button yes" onclick="acceptWhisper()">Yes</button>
+                    <button class="watch-button later">Later</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scene 10: The Whisper (Kilroy Memory) -->
+    <div id="scene-whisper" class="scene">
+        <div class="soul-seed large">
+            <img src="soul-seed.svg" alt="Soul Seed">
+            <div class="sparkles" id="sparkles-8"></div>
+        </div>
+        <div class="whisper-text delay-1">
+            You walked this path last spring.
+        </div>
+        <div class="whisper-text delay-2">
+            Someone left a memory here.<br>A photo of the cherry blossoms.
+        </div>
+        <div class="whisper-text delay-3">
+            Want to see it again?
+        </div>
+    </div>
+
+    <!-- Scene 11: Soul Speed Permission -->
+    <div id="scene-soul-speed" class="scene">
+        <div class="soul-seed small">
+            <img src="soul-seed.svg" alt="Soul Seed">
+            <div class="sparkles" id="sparkles-9"></div>
+        </div>
+        <div class="permission-card" style="animation-delay: 0.5s">
+            <div class="permission-title">Do you have a moment?</div>
+            <div class="permission-description">I can help you remember things when it's the right time and place. Want to try?</div>
+            <button class="permission-button" onclick="grantPermission('calendar')">Allow Calendar Access</button>
+        </div>
+    </div>
+
+    <!-- Scene 12: End -->
+    <div id="scene-end" class="scene">
+        <div class="soul-seed large">
+            <img src="soul-seed.svg" alt="Soul Seed">
+            <div class="sparkles" id="sparkles-10"></div>
+        </div>
+        <div class="whisper-text delay-1">
+            ✨ 🌬️
+        </div>
+    </div>
+
+    <!-- Control Bar -->
+    <div class="control-bar">
+        <button class="control-button" onclick="restartDemo()">↺ Restart</button>
+        <button class="control-button" onclick="nextScene()">Next →</button>
+    </div>
+
+    <script>
+        // Scene management
+        let currentScene = 0;
+        const scenes = [
+            'scene-home',
+            'scene-awakening-1',
+            'scene-awakening-2',
+            'scene-intro',
+            'scene-permission-location',
+            'scene-permission-identity',
+            'scene-permission-notifications',
+            'scene-promise',
+            'scene-passive',
+            'scene-watch',
+            'scene-whisper',
+            'scene-soul-speed',
+            'scene-end'
+        ];
+
+        // Whisper scripts
+        const whispers = {
+            'awakening-breath': "I'm here.",
+            'intro-1': "I sense the hidden layers around you.",
+            'intro-2': "Memories left by others. Moments only you would care about.",
+            'intro-3': "But I need your eyes to see.",
+            'promise-1': "Thank you. I can see you now.",
+            'promise-2': "There's so much more I can offer. But only when you're ready.",
+            'promise-3': "I'll ask when you have time.",
+            'whisper-1': "You walked this path last spring.",
+            'whisper-2': "Someone left a memory here. A photo of the cherry blossoms.",
+            'whisper-3': "Want to see it again?"
+        };
+
+        // Voice synthesis setup
+        function speak(text, delay = 0) {
+            setTimeout(() => {
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.rate = 0.42;
+                    utterance.pitch = 1.1;
+                    utterance.volume = 0.75;
+
+                    // Try to use a soft female voice
+                    const voices = speechSynthesis.getVoices();
+                    const preferredVoices = ['Samantha', 'Zoe', 'Fiona', 'Karen', 'Moira'];
+                    for (let voiceName of preferredVoices) {
+                        const voice = voices.find(v => v.name.includes(voiceName));
+                        if (voice) {
+                            utterance.voice = voice;
+                            break;
+                        }
+                    }
+
+                    speechSynthesis.speak(utterance);
+                }
+            }, delay);
+        }
+
+        // Sparkle generation
+        function generateSparkles(containerId, count = 8) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            container.innerHTML = '';
+            for (let i = 0; i < count; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+
+                const angle = (Math.PI * 2 * i) / count;
+                const radius = 120 + Math.random() * 60;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+
+                sparkle.style.left = `calc(50% + ${x}px)`;
+                sparkle.style.top = `calc(50% + ${y}px)`;
+                sparkle.style.setProperty('--drift', `${(Math.random() - 0.5) * 100}px`);
+                sparkle.style.animationDelay = `${Math.random() * 4}s`;
+
+                container.appendChild(sparkle);
+            }
+        }
+
+        // Initialize all sparkles
+        for (let i = 1; i <= 10; i++) {
+            generateSparkles(`sparkles-${i}`);
+        }
+
+        // Scene transitions
+        function showScene(index) {
+            scenes.forEach((sceneId, i) => {
+                const scene = document.getElementById(sceneId);
+                if (i === index) {
+                    scene.classList.add('active');
+                    onSceneEnter(sceneId);
+                } else {
+                    scene.classList.remove('active');
+                }
+            });
+            currentScene = index;
+        }
+
+        function nextScene() {
+            if (currentScene < scenes.length - 1) {
+                showScene(currentScene + 1);
+            }
+        }
+
+        function startDemo() {
+            showScene(1);
+        }
+
+        function restartDemo() {
+            showScene(0);
+        }
+
+        function grantPermission(type) {
+            nextScene();
+            if (type === 'location' || type === 'identity' || type === 'notifications') {
+                // Visual feedback - sparkles swirl faster
+            }
+        }
+
+        function acceptWhisper() {
+            nextScene();
+        }
+
+        // Scene-specific behaviors
+        function onSceneEnter(sceneId) {
+            switch(sceneId) {
+                case 'scene-awakening-1':
+                    setTimeout(() => nextScene(), 3000);
+                    break;
+                case 'scene-awakening-2':
+                    speak(whispers['awakening-breath'], 1000);
+                    setTimeout(() => nextScene(), 5000);
+                    break;
+                case 'scene-intro':
+                    speak(whispers['intro-1'], 1000);
+                    speak(whispers['intro-2'], 4000);
+                    speak(whispers['intro-3'], 8000);
+                    break;
+                case 'scene-promise':
+                    speak(whispers['promise-1'], 1000);
+                    speak(whispers['promise-2'], 4000);
+                    speak(whispers['promise-3'], 8000);
+                    setTimeout(() => nextScene(), 12000);
+                    break;
+                case 'scene-passive':
+                    setTimeout(() => nextScene(), 4000);
+                    break;
+                case 'scene-whisper':
+                    speak(whispers['whisper-1'], 1000);
+                    speak(whispers['whisper-2'], 4000);
+                    speak(whispers['whisper-3'], 8000);
+                    setTimeout(() => nextScene(), 12000);
+                    break;
+                case 'scene-end':
+                    // Demo complete
+                    break;
+            }
+        }
+
+        // Initialize
+        showScene(0);
+
+        // Load voices (Safari requirement)
+        if ('speechSynthesis' in window) {
+            speechSynthesis.onvoiceschanged = () => {
+                speechSynthesis.getVoices();
+            };
+        }
+    </script>
+</body>
+</html>
